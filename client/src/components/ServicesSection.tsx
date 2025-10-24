@@ -1,38 +1,45 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Search, GitBranch, Shield, Lock, Key, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'wouter';
 
 export default function ServicesSection() {
   const services = [
     {
       icon: Search,
       title: "Vulnerability Scans",
-      description: "Free and low-cost comprehensive security assessments to identify weaknesses before attackers do."
+      description: "Free and low-cost comprehensive security assessments to identify weaknesses before attackers do.",
+      link: "/vulnerability-scans"
     },
     {
       icon: GitBranch,
       title: "AD Attack Path Mapping",
-      description: "Visualize and secure your Active Directory infrastructure against attack paths and privilege escalation."
+      description: "Visualize and secure your Active Directory infrastructure against attack paths and privilege escalation.",
+      link: "/ad-attack-path"
     },
     {
       icon: Shield,
       title: "Anti-Phishing Training",
-      description: "Modern training programs to protect your team from social engineering and emerging threats like ClickFix."
+      description: "Modern training programs to protect your team from social engineering and emerging threats like ClickFix.",
+      link: "/anti-phishing"
     },
     {
       icon: Lock,
       title: "MFA Implementation",
-      description: "Deploy NIST 800-63B compliant multi-factor authentication to secure access to critical systems."
+      description: "Deploy NIST 800-63B compliant multi-factor authentication to secure access to critical systems.",
+      link: "/mfa-implementation"
     },
     {
       icon: Key,
       title: "Password Manager Setup",
-      description: "Implement enterprise password management solutions aligned with latest NIST guidelines."
+      description: "Implement enterprise password management solutions aligned with latest NIST guidelines.",
+      link: "/password-manager"
     },
     {
       icon: Users,
       title: "Security Consulting",
-      description: "Expert cybersecurity guidance tailored to small and medium businesses' unique needs and budgets."
+      description: "Expert cybersecurity guidance tailored to small and medium businesses' unique needs and budgets.",
+      link: "/security-consulting"
     }
   ];
 
@@ -66,9 +73,11 @@ export default function ServicesSection() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Button variant="ghost" className="text-[#FF6B4A] p-0 h-auto hover:bg-transparent" data-testid={`button-learn-more-${index}`}>
-                  Learn More →
-                </Button>
+                <Link href={service.link}>
+                  <Button variant="ghost" className="text-[#FF6B4A] p-0 h-auto hover:bg-transparent" data-testid={`button-learn-more-${index}`}>
+                    Learn More →
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}

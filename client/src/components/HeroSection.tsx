@@ -52,18 +52,24 @@ export default function HeroSection() {
               </Button>
             </div>
             
-            <div className="flex flex-wrap gap-8">
-              <div>
-                <div className="text-3xl font-bold text-[#FF6B4A]" data-testid="stat-scans">5,000+</div>
-                <div className="text-sm text-foreground/60">Scans Completed</div>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                <p className="text-sm text-foreground/70">
+                  <strong className="text-foreground">Modern AI security</strong> - Guidance on secure AI implementation and red-teaming services
+                </p>
               </div>
-              <div>
-                <div className="text-3xl font-bold text-[#FF6B4A]" data-testid="stat-businesses">500+</div>
-                <div className="text-sm text-foreground/60">Businesses Protected</div>
+              <div className="flex items-start gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                <p className="text-sm text-foreground/70">
+                  <strong className="text-foreground">Proven tools</strong> - Open-source solutions like Greenbone and BloodHound with expert guidance
+                </p>
               </div>
-              <div>
-                <div className="text-3xl font-bold text-[#FF6B4A]" data-testid="stat-threats">10,000+</div>
-                <div className="text-sm text-foreground/60">Threats Blocked</div>
+              <div className="flex items-start gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                <p className="text-sm text-foreground/70">
+                  <strong className="text-foreground">SMB-focused</strong> - Affordable, practical security that fits your budget and business needs
+                </p>
               </div>
             </div>
           </div>
