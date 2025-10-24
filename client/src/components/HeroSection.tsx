@@ -17,7 +17,7 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <Badge variant="outline" className="mb-6 border-primary/50 text-primary" data-testid="badge-nist">
-              NIST 800-63B Compliant
+              We help you get NIST 800-63B compliant (your employees will thank us!)
             </Badge>
             
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
@@ -36,9 +36,9 @@ export default function HeroSection() {
                 size="lg" 
                 className="bg-[#FF6B4A] hover:bg-[#FF6B4A]/90 text-white px-8"
                 onClick={scrollToServices}
-                data-testid="button-start-scan"
+                data-testid="button-contact-us"
               >
-                Start Free Scan
+                Contact Us
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
@@ -72,7 +72,7 @@ export default function HeroSection() {
             <img 
               src={puphrLogo} 
               alt="Puphr - Your Friendly Cybersecurity Partner" 
-              className="h-64 w-64 lg:h-96 lg:w-96"
+              className="h-80 w-80 lg:h-[32rem] lg:w-[32rem] animate-float"
               data-testid="img-hero-logo"
             />
           </div>

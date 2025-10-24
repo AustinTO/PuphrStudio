@@ -61,6 +61,7 @@ export default function ParallaxBackground() {
           opacity: 0.5,
         }}
       />
+      <div className="absolute inset-0 bg-black/30" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/60" />
     </div>
   );
