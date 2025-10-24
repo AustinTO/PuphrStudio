@@ -1,43 +1,38 @@
-import { Search, GitBranch, FileText } from 'lucide-react';
-import ServiceCard from './ServiceCard';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Search, GitBranch, Shield, Lock, Key, Users } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function ServicesSection() {
   const services = [
     {
       icon: Search,
       title: "Vulnerability Scans",
-      description: "Comprehensive security assessments to identify weaknesses in your infrastructure before attackers do",
-      features: [
-        "Free initial scan for new clients",
-        "Detailed vulnerability reports with severity ratings",
-        "Prioritized remediation recommendations",
-        "Regular scan scheduling options"
-      ],
-      badge: "Free Available"
+      description: "Free and low-cost comprehensive security assessments to identify weaknesses before attackers do."
     },
     {
       icon: GitBranch,
-      title: "Active Directory Attack Paths",
-      description: "Visualize and understand how attackers could move through your network to reach critical assets",
-      features: [
-        "Complete AD environment mapping",
-        "Attack path visualization",
-        "Privilege escalation risk analysis",
-        "Domain admin exposure assessment"
-      ],
-      badge: "Low Cost"
+      title: "AD Attack Path Mapping",
+      description: "Visualize and secure your Active Directory infrastructure against attack paths and privilege escalation."
     },
     {
-      icon: FileText,
-      title: "Customized Remediation Plans",
-      description: "Actionable, step-by-step guides tailored to your business to fix identified security issues",
-      features: [
-        "Business-context aware recommendations",
-        "Implementation timelines and priorities",
-        "Resource requirement estimates",
-        "Progress tracking and validation"
-      ],
-      badge: "Included"
+      icon: Shield,
+      title: "Anti-Phishing Training",
+      description: "Modern training programs to protect your team from social engineering and emerging threats like ClickFix."
+    },
+    {
+      icon: Lock,
+      title: "MFA Implementation",
+      description: "Deploy NIST 800-63B compliant multi-factor authentication to secure access to critical systems."
+    },
+    {
+      icon: Key,
+      title: "Password Manager Setup",
+      description: "Implement enterprise password management solutions aligned with latest NIST guidelines."
+    },
+    {
+      icon: Users,
+      title: "Security Consulting",
+      description: "Expert cybersecurity guidance tailored to small and medium businesses' unique needs and budgets."
     }
   ];
 
@@ -45,17 +40,37 @@ export default function ServicesSection() {
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            Protect Your Business with <span className="text-primary">Puphr</span>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            Comprehensive Security Services
           </h2>
-          <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-            Affordable, comprehensive cybersecurity services designed specifically for small and medium businesses
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
+            Everything your business needs to stay secure in today's threat landscape
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+            <Card 
+              key={index} 
+              className="bg-[#1a2332] border-[#2a3442] hover:border-primary/50 transition-all"
+            >
+              <CardHeader>
+                <div className="p-3 rounded-lg bg-primary/10 w-fit mb-4">
+                  <service.icon className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle className="text-xl mb-2" data-testid={`text-service-${service.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                  {service.title}
+                </CardTitle>
+                <CardDescription className="text-foreground/60">
+                  {service.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button variant="ghost" className="text-[#FF6B4A] p-0 h-auto hover:bg-transparent" data-testid={`button-learn-more-${index}`}>
+                  Learn More →
+                </Button>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
