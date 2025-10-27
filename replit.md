@@ -4,6 +4,8 @@
 
 Puphr is a modern cybersecurity services website targeting small and medium businesses. The platform provides information about security services including vulnerability scanning, Active Directory attack path mapping, anti-phishing training, MFA implementation, password management, and security consulting. The site features a unique "digital reef" aesthetic with an animated parallax background and a friendly puffer fish mascot to make cybersecurity more approachable.
 
+The site is designed as a fully static website for deployment to puphr.com with a contact form that posts to an external Cloudflare Worker API endpoint.
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
@@ -33,6 +35,8 @@ Preferred communication style: Simple, everyday language.
 - Parallax scrolling effects for visual engagement using CSS transforms and scroll event handlers
 - Responsive design with Tailwind breakpoints (mobile-first approach)
 - Accessibility-focused with Radix UI primitives providing ARIA support
+- Six detailed service pages with professional content (Vulnerability Scans, AD Attack Path Mapping, Anti-Phishing Training, MFA Implementation, Password Manager Setup, Security Consulting)
+- Contact form with smooth scrolling integration and spam prevention
 
 ### Backend Architecture
 
@@ -47,9 +51,10 @@ Preferred communication style: Simple, everyday language.
 - Request body parsing with JSON verification hook for potential webhook integration
 
 **Current State:**
-- Minimal backend implementation with placeholder routes
+- Minimal backend implementation with development-only contact form endpoint
+- Contact form POST /api/contact route responds with { ok: true } for testing
+- In production (static deployment), contact form posts to puphr.com/api/contact/ Cloudflare Worker
 - In-memory storage interface defined but not actively used
-- Ready for expansion with database and API endpoints
 
 **Architectural Decisions:**
 - Monorepo structure with shared schema/types between client and server
@@ -129,6 +134,34 @@ Preferred communication style: Simple, everyday language.
 
 ### Routing & Navigation
 - **Wouter**: Lightweight routing library for React
+
+## Site Features
+
+### Service Pages
+- **Vulnerability Scanning**: Details about Greenbone, credentialed vs unauthenticated scans, comprehensive reporting
+- **AD Attack Path Mapping**: BloodHound usage, ransomware prevention, common attack paths, remediation guidance
+- **Anti-Phishing Training**: Modern threats (ClickFix), Group Policy hardening, phishing simulations
+- **MFA Implementation**: NIST 800-63B compliance, modern vs outdated password policies
+- **Password Manager Setup**: Bitwarden/NordPass deployment, productivity gains, security improvements
+- **Security Consulting**: AI security services (implementation guidance and red-teaming), traditional consulting
+
+### Contact Form
+- Located in ContactSection component on homepage
+- Collects: name, email, message
+- Includes hidden honeypot field "company" for spam prevention
+- Submits POST request to /api/contact with JSON payload
+- In development: Posts to local Express endpoint
+- In production: Posts to puphr.com/api/contact/ (Cloudflare Worker)
+- Success/error handling with toast notifications
+- Form resets on successful submission
+- Smooth scrolling from "Contact Us" button in hero section
+
+### Design Elements
+- Hero section highlights AI security, proven tools, and SMB focus
+- Smooth parallax scrolling background (3 reef images at 0.3x, 0.5x, 0.7x speeds)
+- Consistent navy card backgrounds (#1a2332) with orange accents (#FF6B4A)
+- Larger swimming/bobbing Puphr mascot (512px on desktop)
+- Dark overlay on background for text readability
 
 ### State Management
 - **TanStack Query**: Server state management and caching
