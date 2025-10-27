@@ -4,6 +4,13 @@ import { ArrowRight } from 'lucide-react';
 import puphrLogo from '@assets/D43E03E9-D374-4251-AB52-CF5765EB2D8E_1761305321893.png';
 
 export default function HeroSection() {
+  const scrollToContact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const scrollToServices = () => {
     const element = document.getElementById('services');
     if (element) {
@@ -35,7 +42,7 @@ export default function HeroSection() {
               <Button 
                 size="lg" 
                 className="bg-[#FF6B4A] hover:bg-[#FF6B4A]/90 text-white px-8"
-                onClick={scrollToServices}
+                onClick={scrollToContact}
                 data-testid="button-contact-us"
               >
                 Contact Us
