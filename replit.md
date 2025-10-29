@@ -1,10 +1,18 @@
-# Puphr - Cybersecurity Services Platform
+# Puphr - IT and Cybersecurity Services Platform
 
 ## Overview
 
-Puphr is a modern cybersecurity services website targeting small and medium businesses. The platform provides information about security services including vulnerability scanning, Active Directory attack path mapping, anti-phishing training, MFA implementation, password management, and security consulting. The site features a unique "digital reef" aesthetic with an animated parallax background and a friendly puffer fish mascot to make cybersecurity more approachable.
+Puphr is a modern IT and cybersecurity services website targeting small and medium businesses. The platform provides information about security services including vulnerability scanning, Active Directory attack path mapping, anti-phishing training, MFA implementation, password management, and security consulting. The site features a unique "digital reef" aesthetic with an animated parallax background and a friendly puffer fish mascot to make IT and cybersecurity more approachable.
 
 The site is designed as a fully static website for deployment to puphr.com with a contact form that posts to an external Cloudflare Worker API endpoint.
+
+## Recent Changes
+
+**October 29, 2025:**
+- Updated branding from "cybersecurity" to "IT and Cybersecurity" throughout the site
+- Replaced favicon.png with new user-provided icon
+- Updated HTML meta title and description to reflect new branding
+- Rebuilt static site with all changes verified in dist/puphr-static-site.tar.gz
 
 ## User Preferences
 
