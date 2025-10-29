@@ -5,7 +5,7 @@ export default function SolutionsSection() {
   const solutions = [
     {
       icon: Briefcase,
-      title: "Cybersecurity Consulting",
+      title: "IT and Cybersecurity Consulting",
       description: "Expert guidance to build and maintain a security program that fits your budget and business needs",
       details: [
         "Security program development",

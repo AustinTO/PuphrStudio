@@ -38,7 +38,7 @@ export default function ServicesSection() {
     {
       icon: Users,
       title: "Security Consulting",
-      description: "Expert cybersecurity guidance tailored to small and medium businesses' unique needs and budgets.",
+      description: "Expert IT and cybersecurity guidance tailored to small and medium businesses' unique needs and budgets.",
       link: "/security-consulting"
     }
   ];

@@ -17,7 +17,7 @@ export default function Footer() {
               <span className="text-2xl font-bold text-primary font-mono">Puphr</span>
             </div>
             <p className="text-foreground/70 mb-4">
-              Your friendly cybersecurity puffer fish, protecting small and medium businesses 
+              Your friendly IT and cybersecurity puffer fish, protecting small and medium businesses 
               from modern threats with approachable, affordable solutions.
             </p>
           </div>

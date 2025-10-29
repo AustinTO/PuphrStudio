@@ -77,7 +77,7 @@ export default function ContactSection() {
             Get in Touch
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
-            Ready to strengthen your cybersecurity? Reach out and let's discuss how we can help protect your business.
+            Ready to strengthen your IT and cybersecurity? Reach out and let's discuss how we can help protect your business.
           </p>
         </div>
 

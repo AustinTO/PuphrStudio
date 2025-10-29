@@ -28,7 +28,7 @@ export default function HeroSection() {
             </Badge>
             
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              Cybersecurity Made Simple for{' '}
+              IT and Cybersecurity Made Simple for{' '}
               <span className="text-[#FF6B4A]">Small & Medium Businesses</span>
             </h1>
             
@@ -84,7 +84,7 @@ export default function HeroSection() {
           <div className="flex justify-center lg:justify-end">
             <img 
               src={puphrLogo} 
-              alt="Puphr - Your Friendly Cybersecurity Partner" 
+              alt="Puphr - Your Friendly IT and Cybersecurity Partner" 
               className="h-80 w-80 lg:h-[32rem] lg:w-[32rem] animate-float"
               data-testid="img-hero-logo"
             />

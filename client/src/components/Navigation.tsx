@@ -16,7 +16,7 @@ export default function Navigation() {
           <div className="flex items-center gap-3">
             <img 
               src={puphrLogo} 
-              alt="Puphr - Friendly Cybersecurity Puffer Fish" 
+              alt="Puphr - Friendly IT and Cybersecurity Puffer Fish" 
               className="h-12 w-12" 
               data-testid="img-logo"
             />

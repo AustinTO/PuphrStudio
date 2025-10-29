@@ -22,13 +22,13 @@ export default function SecurityConsulting() {
             <h1 className="text-4xl sm:text-5xl font-bold">Security Consulting</h1>
           </div>
           <p className="text-xl text-foreground/70">
-            Expert cybersecurity guidance tailored to small and medium businesses' unique needs and budgets
+            Expert IT and cybersecurity guidance tailored to small and medium businesses' unique needs and budgets
           </p>
         </div>
 
         <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
           <CardHeader>
-            <CardTitle className="text-2xl">Cybersecurity for SMBs</CardTitle>
+            <CardTitle className="text-2xl">IT and Cybersecurity for SMBs</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-foreground/70">
             <p>
@@ -75,7 +75,7 @@ export default function SecurityConsulting() {
                 Navigate regulatory requirements and security frameworks:
               </p>
               <ul className="space-y-2 text-sm text-foreground/60">
-                <li>• NIST Cybersecurity Framework implementation</li>
+                <li>• NIST 800-53 and Cybersecurity Framework implementation</li>
                 <li>• HIPAA security rule compliance (for healthcare)</li>
                 <li>• PCI DSS requirements (for payment processing)</li>
                 <li>• GDPR and privacy regulation guidance</li>
