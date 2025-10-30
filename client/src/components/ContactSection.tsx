@@ -45,11 +45,8 @@ export default function ContactSection() {
       scrollTimeoutRef.current = null;
     }
     
-    // Parse query string from the location path
-    const searchIndex = location.indexOf('?');
-    if (searchIndex === -1) return;
-    
-    const params = new URLSearchParams(location.substring(searchIndex));
+    // Parse query string from window.location (works for static sites too)
+    const params = new URLSearchParams(window.location.search);
     const service = params.get('service');
     
     // Only prefill if there's a valid service parameter
