@@ -8,11 +8,19 @@ The site is designed as a fully static website for deployment to puphr.com with 
 
 ## Recent Changes
 
+**October 30, 2025:**
+- Added 5 new "Core One-Time Services" pages (Vulnerability & Security Audit, Cloud & M365 Security Setup, Workstation Hardening, AI Workflow Automation, Secure Website & Domain Hardening)
+- Implemented contact form pre-fill functionality - service page CTA buttons navigate to homepage with service-specific pre-filled messages
+- Enhanced parallax background with rhythmic up/down oscillation using sine waves for flowing, wave-like motion
+- Added 90% transparency to all cards to allow reef background to show through
+- Fixed Button/Link component nesting to enable proper navigation from service pages
+- Updated contact form to use window.location.search for static site compatibility
+- Rebuilt static site with all new features in dist/puphr-static-site.tar.gz (8.0MB)
+
 **October 29, 2025:**
 - Updated branding from "cybersecurity" to "IT and Cybersecurity" throughout the site
 - Replaced favicon.png with new user-provided icon
 - Updated HTML meta title and description to reflect new branding
-- Rebuilt static site with all changes verified in dist/puphr-static-site.tar.gz
 
 ## User Preferences
 
