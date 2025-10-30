@@ -64,13 +64,16 @@ export default function ContactSection() {
           const newMessage = serviceMessages[service];
           lastAutoFilledMessage.current = newMessage;
           
-          // Scroll to contact section smoothly
-          scrollTimeoutRef.current = setTimeout(() => {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-              contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }, 100);
+          // Scroll to contact section smoothly after page renders
+          // Use requestAnimationFrame to ensure DOM is ready, then add small delay
+          requestAnimationFrame(() => {
+            scrollTimeoutRef.current = setTimeout(() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }, 500);
+          });
           
           return {
             ...prev,
