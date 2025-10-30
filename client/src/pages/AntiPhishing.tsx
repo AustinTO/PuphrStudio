@@ -26,7 +26,7 @@ export default function AntiPhishing() {
           </p>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Beyond Traditional Training</CardTitle>
           </CardHeader>
@@ -44,7 +44,7 @@ export default function AntiPhishing() {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <Users className="h-6 w-6 text-primary mb-2" />
               <CardTitle>Training & Presentations</CardTitle>
@@ -63,7 +63,7 @@ export default function AntiPhishing() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <Shield className="h-6 w-6 text-primary mb-2" />
               <CardTitle>Group Policy Hardening</CardTitle>
@@ -83,7 +83,7 @@ export default function AntiPhishing() {
           </Card>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <Target className="h-6 w-6 text-primary mb-2" />
             <CardTitle className="text-2xl">Phishing Simulation Engagements</CardTitle>
@@ -133,7 +133,7 @@ export default function AntiPhishing() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">The ClickFix Threat</CardTitle>
           </CardHeader>

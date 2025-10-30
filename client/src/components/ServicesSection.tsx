@@ -98,7 +98,7 @@ export default function ServicesSection() {
             {coreServices.map((service, index) => (
               <Card 
                 key={index} 
-                className="bg-[#1a2332] border-[#2a3442] hover:border-primary/50 transition-all"
+                className="bg-[#1a2332]/90 border-[#2a3442] hover:border-primary/50 transition-all"
                 data-testid={`card-core-service-${service.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 <CardHeader>
@@ -130,7 +130,7 @@ export default function ServicesSection() {
             {ongoingServices.map((service, index) => (
               <Card 
                 key={index} 
-                className="bg-[#1a2332] border-[#2a3442] hover:border-primary/50 transition-all"
+                className="bg-[#1a2332]/90 border-[#2a3442] hover:border-primary/50 transition-all"
                 data-testid={`card-ongoing-service-${service.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 <CardHeader>

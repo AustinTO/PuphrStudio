@@ -155,7 +155,7 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442]">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442]">
           <CardHeader>
             <CardTitle className="text-2xl">Send us a message</CardTitle>
           </CardHeader>

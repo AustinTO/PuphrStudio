@@ -26,7 +26,7 @@ export default function MFAImplementation() {
           </p>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">NIST Standards Have Changed</CardTitle>
           </CardHeader>
@@ -44,7 +44,7 @@ export default function MFAImplementation() {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-[#1a2332] border-destructive/50">
+          <Card className="bg-[#1a2332]/90 border-destructive/50">
             <CardHeader>
               <XCircle className="h-6 w-6 text-destructive mb-2" />
               <CardTitle className="text-destructive">Outdated & Dangerous Policies</CardTitle>
@@ -85,7 +85,7 @@ export default function MFAImplementation() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#1a2332] border-primary/50">
+          <Card className="bg-[#1a2332]/90 border-primary/50">
             <CardHeader>
               <CheckCircle className="h-6 w-6 text-primary mb-2" />
               <CardTitle className="text-primary">Modern NIST 800-63B Standards</CardTitle>
@@ -127,7 +127,7 @@ export default function MFAImplementation() {
           </Card>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <Key className="h-6 w-6 text-primary mb-2" />
             <CardTitle className="text-2xl">Our MFA Implementation Service</CardTitle>
@@ -178,7 +178,7 @@ export default function MFAImplementation() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Why This Matters</CardTitle>
           </CardHeader>

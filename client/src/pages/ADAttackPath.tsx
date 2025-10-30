@@ -26,7 +26,7 @@ export default function ADAttackPath() {
           </p>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">The Ransomware Threat</CardTitle>
           </CardHeader>
@@ -45,7 +45,7 @@ export default function ADAttackPath() {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <Eye className="h-6 w-6 text-primary mb-2" />
               <CardTitle>BloodHound Analysis</CardTitle>
@@ -64,7 +64,7 @@ export default function ADAttackPath() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <Shield className="h-6 w-6 text-primary mb-2" />
               <CardTitle>Expert Guidance</CardTitle>
@@ -83,7 +83,7 @@ export default function ADAttackPath() {
           </Card>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Common Attack Paths We Find</CardTitle>
           </CardHeader>
@@ -130,7 +130,7 @@ export default function ADAttackPath() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Prevent Enterprise-Wide Ransomware</CardTitle>
           </CardHeader>

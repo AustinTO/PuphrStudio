@@ -26,7 +26,7 @@ export default function PasswordManager() {
           </p>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">The Password Problem</CardTitle>
           </CardHeader>
@@ -44,7 +44,7 @@ export default function PasswordManager() {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <Shield className="h-6 w-6 text-primary mb-2" />
               <CardTitle>Massive Security Improvement</CardTitle>
@@ -64,7 +64,7 @@ export default function PasswordManager() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <TrendingUp className="h-6 w-6 text-primary mb-2" />
               <CardTitle>Increased Productivity</CardTitle>
@@ -85,7 +85,7 @@ export default function PasswordManager() {
           </Card>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <Lock className="h-6 w-6 text-primary mb-2" />
             <CardTitle className="text-2xl">Enterprise-Grade Solutions</CardTitle>
@@ -126,7 +126,7 @@ export default function PasswordManager() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Our Implementation Process</CardTitle>
           </CardHeader>
@@ -196,7 +196,7 @@ export default function PasswordManager() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">The ROI is Clear</CardTitle>
           </CardHeader>

@@ -26,7 +26,7 @@ export default function SecurityConsulting() {
           </p>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">IT and Cybersecurity for SMBs</CardTitle>
           </CardHeader>
@@ -45,7 +45,7 @@ export default function SecurityConsulting() {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <Shield className="h-6 w-6 text-primary mb-2" />
               <CardTitle>Security Program Development</CardTitle>
@@ -65,7 +65,7 @@ export default function SecurityConsulting() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <Target className="h-6 w-6 text-primary mb-2" />
               <CardTitle>Compliance & Frameworks</CardTitle>
@@ -86,7 +86,7 @@ export default function SecurityConsulting() {
           </Card>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <Bot className="h-6 w-6 text-primary mb-2" />
             <CardTitle className="text-2xl">AI Security Services</CardTitle>
@@ -141,7 +141,7 @@ export default function SecurityConsulting() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Strategic Technology Guidance</CardTitle>
           </CardHeader>
@@ -190,7 +190,7 @@ export default function SecurityConsulting() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Flexible Engagement Models</CardTitle>
           </CardHeader>

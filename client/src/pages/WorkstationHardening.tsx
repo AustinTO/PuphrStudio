@@ -26,7 +26,7 @@ export default function WorkstationHardening() {
           </p>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Protect Against Modern Threats</CardTitle>
           </CardHeader>
@@ -43,7 +43,7 @@ export default function WorkstationHardening() {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <Shield className="h-6 w-6 text-primary mb-2" />
               <CardTitle>Script & Execution Controls</CardTitle>
@@ -73,7 +73,7 @@ export default function WorkstationHardening() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#1a2332] border-destructive/50">
+          <Card className="bg-[#1a2332]/90 border-destructive/50">
             <CardHeader>
               <AlertTriangle className="h-6 w-6 text-destructive mb-2" />
               <CardTitle>ClickFix Defense</CardTitle>
@@ -104,7 +104,7 @@ export default function WorkstationHardening() {
           </Card>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Complete Workstation Security</CardTitle>
           </CardHeader>

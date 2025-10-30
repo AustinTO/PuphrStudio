@@ -26,7 +26,7 @@ export default function AIAutomation() {
           </p>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Practical AI That Works</CardTitle>
           </CardHeader>
@@ -42,7 +42,7 @@ export default function AIAutomation() {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <Sparkles className="h-6 w-6 text-primary mb-2" />
               <CardTitle>Smart Document Processing</CardTitle>
@@ -72,7 +72,7 @@ export default function AIAutomation() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[#1a2332] border-[#2a3442]">
+          <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
               <Zap className="h-6 w-6 text-primary mb-2" />
               <CardTitle>Intelligent Monitoring</CardTitle>
@@ -103,7 +103,7 @@ export default function AIAutomation() {
           </Card>
         </div>
 
-        <Card className="bg-[#1a2332] border-[#2a3442] mb-8">
+        <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
             <CardTitle className="text-2xl">Business Automation Examples</CardTitle>
           </CardHeader>
