@@ -12,20 +12,20 @@ export default function ParallaxBackground() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       
-      // Create rhythmic up/down oscillation using sine waves
-      // Different frequencies for each layer create depth
-      const oscillation1 = Math.sin(scrollY * 0.002) * 30;
-      const oscillation2 = Math.sin(scrollY * 0.003) * 50;
-      const oscillation3 = Math.sin(scrollY * 0.004) * 70;
+      // Create strong rhythmic up/down oscillation using sine waves
+      // Each layer has different frequency and amplitude for depth
+      const oscillation1 = Math.sin(scrollY * 0.003) * 150;
+      const oscillation2 = Math.sin(scrollY * 0.004) * 200;
+      const oscillation3 = Math.sin(scrollY * 0.005) * 250;
       
       if (layer1Ref.current) {
-        layer1Ref.current.style.transform = `translateY(${scrollY * 0.15 + oscillation1}px)`;
+        layer1Ref.current.style.transform = `translateY(${oscillation1}px)`;
       }
       if (layer2Ref.current) {
-        layer2Ref.current.style.transform = `translateY(${scrollY * 0.25 + oscillation2}px)`;
+        layer2Ref.current.style.transform = `translateY(${oscillation2}px)`;
       }
       if (layer3Ref.current) {
-        layer3Ref.current.style.transform = `translateY(${scrollY * 0.35 + oscillation3}px)`;
+        layer3Ref.current.style.transform = `translateY(${oscillation3}px)`;
       }
     };
 
