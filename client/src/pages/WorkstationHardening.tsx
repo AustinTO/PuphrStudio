@@ -145,7 +145,7 @@ export default function WorkstationHardening() {
         </Card>
 
         <div className="text-center">
-          <Link href="/">
+          <Link href="/?service=workstation-hardening">
             <Button size="lg" className="bg-[#FF6B4A] hover:bg-[#FF6B4A]/90" data-testid="button-contact">
               Harden Your Workstations
             </Button>

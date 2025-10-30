@@ -137,7 +137,7 @@ export default function SecurityAudit() {
         </Card>
 
         <div className="text-center">
-          <Link href="/">
+          <Link href="/?service=security-audit">
             <Button size="lg" className="bg-[#FF6B4A] hover:bg-[#FF6B4A]/90" data-testid="button-contact">
               Schedule Your Security Audit
             </Button>

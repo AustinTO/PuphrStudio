@@ -145,7 +145,7 @@ export default function CloudSecurity() {
         </Card>
 
         <div className="text-center">
-          <Link href="/">
+          <Link href="/?service=cloud-security">
             <Button size="lg" className="bg-[#FF6B4A] hover:bg-[#FF6B4A]/90" data-testid="button-contact">
               Secure Your Cloud Environment
             </Button>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,9 +6,25 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Send } from 'lucide-react';
+import { useLocation } from 'wouter';
+
+const serviceMessages: Record<string, string> = {
+  'security-audit': "I'm interested in learning more about your Vulnerability & Security Audit service.",
+  'cloud-security': "I'm interested in learning more about your Cloud & M365 Security Setup service.",
+  'workstation-hardening': "I'm interested in learning more about your Workstation Hardening & User Protection service.",
+  'ai-automation': "I'm interested in learning more about your AI Workflow Automation Setup service.",
+  'website-hardening': "I'm interested in learning more about your Secure Website & Domain Hardening service.",
+  'vulnerability-scans': "I'm interested in learning more about your Vulnerability Scanning service.",
+  'ad-attack-path': "I'm interested in learning more about your AD Attack Path Mapping service.",
+  'anti-phishing': "I'm interested in learning more about your Anti-Phishing Training service.",
+  'mfa': "I'm interested in learning more about your MFA Implementation service.",
+  'password-manager': "I'm interested in learning more about your Password Manager Setup service.",
+  'security-consulting': "I'm interested in learning more about your Security Consulting service."
+};
 
 export default function ContactSection() {
   const { toast } = useToast();
+  const [location] = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -16,6 +32,63 @@ export default function ContactSection() {
     message: '',
     company: '' // honeypot field
   });
+  
+  // Track the last auto-filled message text to detect user edits
+  const lastAutoFilledMessage = useRef<string>('');
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Pre-fill message based on URL parameter
+  useEffect(() => {
+    // Clear any pending scroll timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = null;
+    }
+    
+    // Parse query string from the location path
+    const searchIndex = location.indexOf('?');
+    if (searchIndex === -1) return;
+    
+    const params = new URLSearchParams(location.substring(searchIndex));
+    const service = params.get('service');
+    
+    // Only prefill if there's a valid service parameter
+    if (service && serviceMessages[service]) {
+      setFormData(prev => {
+        // Allow prefill if:
+        // 1. Message is empty, OR
+        // 2. Current message exactly matches our last auto-filled message (not user-edited)
+        const shouldPrefill = prev.message === '' || prev.message === lastAutoFilledMessage.current;
+        
+        if (shouldPrefill) {
+          const newMessage = serviceMessages[service];
+          lastAutoFilledMessage.current = newMessage;
+          
+          // Scroll to contact section smoothly
+          scrollTimeoutRef.current = setTimeout(() => {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+              contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 100);
+          
+          return {
+            ...prev,
+            message: newMessage
+          };
+        }
+        
+        return prev;
+      });
+    }
+    
+    // Cleanup function
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [location]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,13 +116,14 @@ export default function ContactSection() {
           description: "Thank you for reaching out. We'll get back to you soon.",
         });
         
-        // Reset form
+        // Reset form and auto-fill tracking
         setFormData({
           name: '',
           email: '',
           message: '',
           company: ''
         });
+        lastAutoFilledMessage.current = '';
       } else {
         throw new Error('Submission failed');
       }
@@ -92,7 +166,7 @@ export default function ContactSection() {
                 type="text"
                 name="company"
                 value={formData.company}
-                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
                 style={{ display: 'none' }}
                 tabIndex={-1}
                 autoComplete="off"
@@ -108,7 +182,7 @@ export default function ContactSection() {
                   type="text"
                   required
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                   placeholder="Your name"
                   className="bg-background border-[#2a3442]"
                   data-testid="input-name"
@@ -124,7 +198,7 @@ export default function ContactSection() {
                   type="email"
                   required
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                   placeholder="your.email@company.com"
                   className="bg-background border-[#2a3442]"
                   data-testid="input-email"
@@ -139,7 +213,7 @@ export default function ContactSection() {
                   id="message"
                   required
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                   placeholder="Tell us about your security needs..."
                   rows={6}
                   className="bg-background border-[#2a3442] resize-none"

@@ -144,7 +144,7 @@ export default function AIAutomation() {
         </Card>
 
         <div className="text-center">
-          <Link href="/">
+          <Link href="/?service=ai-automation">
             <Button size="lg" className="bg-[#FF6B4A] hover:bg-[#FF6B4A]/90" data-testid="button-contact">
               Automate Your Workflows
             </Button>
