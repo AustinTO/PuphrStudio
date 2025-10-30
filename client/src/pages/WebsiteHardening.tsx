@@ -145,11 +145,11 @@ export default function WebsiteHardening() {
         </Card>
 
         <div className="text-center">
-          <Link href="/?service=website-hardening">
-            <Button size="lg" className="bg-[#FF6B4A] hover:bg-[#FF6B4A]/90" data-testid="button-contact">
+          <Button asChild size="lg" className="bg-[#FF6B4A] hover:bg-[#FF6B4A]/90" data-testid="button-contact-website-hardening">
+            <Link href="/?service=website-hardening">
               Build Your Secure Website
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
