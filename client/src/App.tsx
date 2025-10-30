@@ -10,6 +10,11 @@ import AntiPhishing from "@/pages/AntiPhishing";
 import MFAImplementation from "@/pages/MFAImplementation";
 import PasswordManager from "@/pages/PasswordManager";
 import SecurityConsulting from "@/pages/SecurityConsulting";
+import SecurityAudit from "@/pages/SecurityAudit";
+import CloudSecurity from "@/pages/CloudSecurity";
+import WorkstationHardening from "@/pages/WorkstationHardening";
+import AIAutomation from "@/pages/AIAutomation";
+import WebsiteHardening from "@/pages/WebsiteHardening";
 import NotFound from "@/pages/not-found";
 import ParallaxBackground from "@/components/ParallaxBackground";
 import Navigation from "@/components/Navigation";
@@ -24,6 +29,11 @@ function Router() {
       <Route path="/mfa-implementation" component={MFAImplementation} />
       <Route path="/password-manager" component={PasswordManager} />
       <Route path="/security-consulting" component={SecurityConsulting} />
+      <Route path="/security-audit" component={SecurityAudit} />
+      <Route path="/cloud-security" component={CloudSecurity} />
+      <Route path="/workstation-hardening" component={WorkstationHardening} />
+      <Route path="/ai-automation" component={AIAutomation} />
+      <Route path="/website-hardening" component={WebsiteHardening} />
       <Route component={NotFound} />
     </Switch>
   );
