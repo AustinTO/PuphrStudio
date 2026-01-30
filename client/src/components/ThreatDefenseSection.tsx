@@ -1,20 +1,52 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, AlertTriangle, Users, MousePointerClick } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { getContent, renderInlineMarkdown } from '@/lib/content';
+
+const iconMap = {
+  Shield,
+  AlertTriangle,
+  Users,
+  MousePointerClick,
+} as const;
+
+type HomeContent = {
+  threats: {
+    badge: string;
+    heading: string;
+    accent: string;
+    subheading: string;
+    cards: {
+      theme: 'accent' | 'destructive';
+      badge: string;
+      title: string;
+      description: string;
+      icon: keyof typeof iconMap;
+      bullets: { icon: keyof typeof iconMap; text: string }[];
+    }[];
+  };
+};
 
 export default function ThreatDefenseSection() {
+  const { data } = getContent<HomeContent>('home');
+  const { threats } = data;
+  const [primaryCard, secondaryCard] = threats.cards;
+  const PrimaryIcon = iconMap[primaryCard.icon];
+  const SecondaryIcon = iconMap[secondaryCard.icon];
+
   return (
     <section id="threats" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 text-sm" data-testid="badge-modern-threats">
-            Modern Threat Defense
+            <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(threats.badge) }} />
           </Badge>
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            Stay Ahead of <span className="text-accent">Emerging Threats</span>
+            <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(threats.heading) }} />{' '}
+            <span className="text-accent" dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(threats.accent) }} />
           </h2>
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-            Protect your team from sophisticated phishing attacks and new threat vectors like ClickFix
+            <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(threats.subheading) }} />
           </p>
         </div>
         
@@ -23,33 +55,30 @@ export default function ThreatDefenseSection() {
             <CardHeader>
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 rounded-lg bg-accent/20 border border-accent/30">
-                  <Shield className="h-8 w-8 text-accent" />
+                  <PrimaryIcon className="h-8 w-8 text-accent" />
                 </div>
-                <Badge variant="secondary" data-testid="badge-anti-phishing">Active Protection</Badge>
+                <Badge variant="secondary" data-testid="badge-anti-phishing">
+                  <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(primaryCard.badge) }} />
+                </Badge>
               </div>
-              <CardTitle className="text-2xl">Anti-Phishing Training</CardTitle>
+              <CardTitle className="text-2xl">
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(primaryCard.title) }} />
+              </CardTitle>
               <CardDescription className="text-base">
-                Modern, interactive training that actually works
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(primaryCard.description) }} />
               </CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3">
-                <li className="flex items-start gap-2">
-                  <Users className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">Realistic phishing simulations tailored to your industry</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <AlertTriangle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">Real-time threat intelligence updates</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Shield className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">Measurable behavior change tracking</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <MousePointerClick className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">Engaging, non-boring training modules</span>
-                </li>
+                {primaryCard.bullets.map((bullet) => {
+                  const BulletIcon = iconMap[bullet.icon];
+                  return (
+                    <li key={bullet.text} className="flex items-start gap-2">
+                      <BulletIcon className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                      <span className="text-sm" dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(bullet.text) }} />
+                    </li>
+                  );
+                })}
               </ul>
             </CardContent>
           </Card>
@@ -58,33 +87,30 @@ export default function ThreatDefenseSection() {
             <CardHeader>
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 rounded-lg bg-destructive/20 border border-destructive/30">
-                  <MousePointerClick className="h-8 w-8 text-destructive" />
+                  <SecondaryIcon className="h-8 w-8 text-destructive" />
                 </div>
-                <Badge variant="destructive" data-testid="badge-clickfix">New Threat</Badge>
+                <Badge variant="destructive" data-testid="badge-clickfix">
+                  <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(secondaryCard.badge) }} />
+                </Badge>
               </div>
-              <CardTitle className="text-2xl">ClickFix Defense</CardTitle>
+              <CardTitle className="text-2xl">
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(secondaryCard.title) }} />
+              </CardTitle>
               <CardDescription className="text-base">
-                Protection against the latest social engineering tactics
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(secondaryCard.description) }} />
               </CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3">
-                <li className="flex items-start gap-2">
-                  <AlertTriangle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">Detection of fake error message campaigns</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Shield className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">Browser security configuration guidance</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Users className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">Team awareness training on ClickFix tactics</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <MousePointerClick className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">Monitoring for ClickFix attack indicators</span>
-                </li>
+                {secondaryCard.bullets.map((bullet) => {
+                  const BulletIcon = iconMap[bullet.icon];
+                  return (
+                    <li key={bullet.text} className="flex items-start gap-2">
+                      <BulletIcon className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
+                      <span className="text-sm" dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(bullet.text) }} />
+                    </li>
+                  );
+                })}
               </ul>
             </CardContent>
           </Card>

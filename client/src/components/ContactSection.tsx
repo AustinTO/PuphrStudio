@@ -7,22 +7,36 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Send } from 'lucide-react';
 import { useLocation } from 'wouter';
+import { getContent, renderInlineMarkdown } from '@/lib/content';
 
-const serviceMessages: Record<string, string> = {
-  'security-audit': "I'm interested in learning more about your Vulnerability & Security Audit service.",
-  'cloud-security': "I'm interested in learning more about your Cloud & M365 Security Setup service.",
-  'workstation-hardening': "I'm interested in learning more about your Workstation Hardening & User Protection service.",
-  'ai-automation': "I'm interested in learning more about your AI Workflow Automation Setup service.",
-  'website-hardening': "I'm interested in learning more about your Secure Website & Domain Hardening service.",
-  'vulnerability-scans': "I'm interested in learning more about your Vulnerability Scanning service.",
-  'ad-attack-path': "I'm interested in learning more about your AD Attack Path Mapping service.",
-  'anti-phishing': "I'm interested in learning more about your Anti-Phishing Training service.",
-  'mfa': "I'm interested in learning more about your MFA Implementation service.",
-  'password-manager': "I'm interested in learning more about your Password Manager Setup service.",
-  'security-consulting': "I'm interested in learning more about your Security Consulting service."
+type HomeContent = {
+  contact: {
+    heading: string;
+    subheading: string;
+    cardTitle: string;
+    form: {
+      nameLabel: string;
+      namePlaceholder: string;
+      emailLabel: string;
+      emailPlaceholder: string;
+      messageLabel: string;
+      messagePlaceholder: string;
+      submitDefault: string;
+      submitLoading: string;
+    };
+    footerNote: string;
+    contactEmail: string;
+    toastSuccessTitle: string;
+    toastSuccessDescription: string;
+    toastErrorTitle: string;
+    toastErrorDescription: string;
+    serviceMessages: Record<string, string>;
+  };
 };
 
 export default function ContactSection() {
+  const { data } = getContent<HomeContent>('home');
+  const { contact } = data;
   const { toast } = useToast();
   const [location] = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,7 +64,7 @@ export default function ContactSection() {
     const service = params.get('service');
     
     // Only prefill if there's a valid service parameter
-    if (service && serviceMessages[service]) {
+    if (service && contact.serviceMessages[service]) {
       setFormData(prev => {
         // Allow prefill if:
         // 1. Message is empty, OR
@@ -58,7 +72,7 @@ export default function ContactSection() {
         const shouldPrefill = prev.message === '' || prev.message === lastAutoFilledMessage.current;
         
         if (shouldPrefill) {
-          const newMessage = serviceMessages[service];
+          const newMessage = contact.serviceMessages[service];
           lastAutoFilledMessage.current = newMessage;
           
           // Scroll to contact section smoothly after page renders
@@ -112,8 +126,8 @@ export default function ContactSection() {
 
       if (data.ok) {
         toast({
-          title: "Message sent!",
-          description: "Thank you for reaching out. We'll get back to you soon.",
+          title: contact.toastSuccessTitle,
+          description: contact.toastSuccessDescription,
         });
         
         // Reset form and auto-fill tracking
@@ -129,8 +143,8 @@ export default function ContactSection() {
       }
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again or email us directly.",
+        title: contact.toastErrorTitle,
+        description: contact.toastErrorDescription,
         variant: "destructive",
       });
     } finally {
@@ -148,16 +162,18 @@ export default function ContactSection() {
             </div>
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            Get in Touch
+            <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(contact.heading) }} />
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
-            Ready to strengthen your IT and cybersecurity? Reach out and let's discuss how we can help protect your business.
+            <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(contact.subheading) }} />
           </p>
         </div>
 
         <Card className="bg-[#1a2332]/90 border-[#2a3442]">
           <CardHeader>
-            <CardTitle className="text-2xl">Send us a message</CardTitle>
+            <CardTitle className="text-2xl">
+              <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(contact.cardTitle) }} />
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -175,7 +191,7 @@ export default function ContactSection() {
 
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-foreground">
-                  Name
+                  <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(contact.form.nameLabel) }} />
                 </Label>
                 <Input
                   id="name"
@@ -183,7 +199,7 @@ export default function ContactSection() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                  placeholder="Your name"
+                  placeholder={contact.form.namePlaceholder}
                   className="bg-background border-[#2a3442]"
                   data-testid="input-name"
                 />
@@ -191,7 +207,7 @@ export default function ContactSection() {
 
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-foreground">
-                  Email
+                  <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(contact.form.emailLabel) }} />
                 </Label>
                 <Input
                   id="email"
@@ -199,7 +215,7 @@ export default function ContactSection() {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  placeholder="your.email@company.com"
+                  placeholder={contact.form.emailPlaceholder}
                   className="bg-background border-[#2a3442]"
                   data-testid="input-email"
                 />
@@ -207,14 +223,14 @@ export default function ContactSection() {
 
               <div className="space-y-2">
                 <Label htmlFor="message" className="text-foreground">
-                  Message
+                  <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(contact.form.messageLabel) }} />
                 </Label>
                 <Textarea
                   id="message"
                   required
                   value={formData.message}
                   onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                  placeholder="Tell us about your security needs..."
+                  placeholder={contact.form.messagePlaceholder}
                   rows={6}
                   className="bg-background border-[#2a3442] resize-none"
                   data-testid="input-message"
@@ -230,12 +246,12 @@ export default function ContactSection() {
               >
                 {isSubmitting ? (
                   <>
-                    <span className="mr-2">Sending...</span>
+                    <span className="mr-2">{contact.form.submitLoading}</span>
                   </>
                 ) : (
                   <>
                     <Send className="mr-2 h-4 w-4" />
-                    Send Message
+              <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(contact.form.submitDefault) }} />
                   </>
                 )}
               </Button>
@@ -245,9 +261,9 @@ export default function ContactSection() {
 
         <div className="mt-8 text-center">
           <p className="text-sm text-foreground/60">
-            You can also reach us directly at{' '}
-            <a href="mailto:contact@puphr.com" className="text-primary hover:underline">
-              contact@puphr.com
+            {contact.footerNote}{' '}
+            <a href={`mailto:${contact.contactEmail}`} className="text-primary hover:underline">
+              {contact.contactEmail}
             </a>
           </p>
         </div>

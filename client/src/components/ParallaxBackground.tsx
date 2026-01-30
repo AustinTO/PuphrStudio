@@ -12,20 +12,30 @@ export default function ParallaxBackground() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       
-      // Create strong rhythmic up/down oscillation using sine waves
-      // Each layer has different frequency and amplitude for depth
-      const oscillation1 = Math.sin(scrollY * 0.003) * 150;
-      const oscillation2 = Math.sin(scrollY * 0.004) * 200;
-      const oscillation3 = Math.sin(scrollY * 0.005) * 250;
+      // Seaweed sway: horizontal oscillation with slight counter-rotation per layer
+      const sway1 = Math.sin(scrollY * 0.0025) * 70;
+      const sway2 = Math.sin(scrollY * 0.0035 + Math.PI / 3) * -90;
+      const sway3 = Math.sin(scrollY * 0.0045 + Math.PI / 2) * 110;
+      const drift1 = Math.cos(scrollY * 0.0018) * 12;
+      const drift2 = Math.cos(scrollY * 0.0022 + Math.PI / 4) * -16;
+      const drift3 = Math.cos(scrollY * 0.0026 + Math.PI / 6) * 20;
+      const rotate1 = Math.sin(scrollY * 0.0022) * 2.8;
+      const rotate2 = Math.sin(scrollY * 0.0028 + Math.PI / 5) * -3.6;
+      const rotate3 = Math.sin(scrollY * 0.0032 + Math.PI / 7) * 4.6;
+      const zoom = Math.max(0, Math.min(1, scrollY / 900));
+      const scaleBase = 1.12 - (0.03 * zoom);
+      const scale1 = scaleBase;
+      const scale2 = scaleBase + 0.01;
+      const scale3 = scaleBase + 0.02;
       
       if (layer1Ref.current) {
-        layer1Ref.current.style.transform = `translateY(${oscillation1}px)`;
+        layer1Ref.current.style.transform = `translate(${sway1}px, ${drift1}px) rotate(${rotate1}deg) scale(${scale1})`;
       }
       if (layer2Ref.current) {
-        layer2Ref.current.style.transform = `translateY(${oscillation2}px)`;
+        layer2Ref.current.style.transform = `translate(${sway2}px, ${drift2}px) rotate(${rotate2}deg) scale(${scale2})`;
       }
       if (layer3Ref.current) {
-        layer3Ref.current.style.transform = `translateY(${oscillation3}px)`;
+        layer3Ref.current.style.transform = `translate(${sway3}px, ${drift3}px) rotate(${rotate3}deg) scale(${scale3})`;
       }
     };
 

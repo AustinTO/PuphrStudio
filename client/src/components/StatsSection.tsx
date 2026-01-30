@@ -1,32 +1,27 @@
 import { Shield, Search, TrendingDown, Users } from 'lucide-react';
+import { getContent, renderInlineMarkdown } from '@/lib/content';
+
+const iconMap = {
+  Users,
+  Search,
+  TrendingDown,
+  Shield,
+} as const;
+
+type HomeContent = {
+  stats: {
+    items: {
+      icon?: keyof typeof iconMap;
+      value: string;
+      label: string;
+      color: string;
+    }[];
+  };
+};
 
 export default function StatsSection() {
-  const stats = [
-    {
-      icon: Users,
-      value: "500+",
-      label: "Businesses Protected",
-      color: "text-primary"
-    },
-    {
-      icon: Search,
-      value: "10K+",
-      label: "Vulnerabilities Found",
-      color: "text-accent"
-    },
-    {
-      icon: TrendingDown,
-      value: "87%",
-      label: "Phishing Reduction",
-      color: "text-chart-4"
-    },
-    {
-      icon: Shield,
-      value: "24/7",
-      label: "Threat Monitoring",
-      color: "text-primary"
-    }
-  ];
+  const { data } = getContent<HomeContent>('home');
+  const stats = data.stats?.items ?? [];
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -38,9 +33,20 @@ export default function StatsSection() {
               className="text-center backdrop-blur-lg bg-card/30 p-8 rounded-xl border border-white/10 hover-elevate transition-all duration-300"
               data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, '-')}`}
             >
-              <stat.icon className={`h-10 w-10 mx-auto mb-4 ${stat.color}`} />
-              <div className="text-4xl font-bold mb-2">{stat.value}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+              {(stat.icon && iconMap[stat.icon]) ? (
+                (() => {
+                  const Icon = iconMap[stat.icon];
+                  return <Icon className={`h-10 w-10 mx-auto mb-4 ${stat.color}`} />;
+                })()
+              ) : (
+                <Shield className={`h-10 w-10 mx-auto mb-4 ${stat.color}`} />
+              )}
+              <div className="text-4xl font-bold mb-2">
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(stat.value) }} />
+              </div>
+              <div className="text-sm text-muted-foreground">
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(stat.label) }} />
+              </div>
             </div>
           ))}
         </div>

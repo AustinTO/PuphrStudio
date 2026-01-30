@@ -1,6 +1,38 @@
-node_modules
-dist
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+client/dist/
+server/dist/
+
+# local env
+.env
+.env.*.local
+.env.local
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# caches
+.cache/
+.parcel-cache/
+.turbo/
+.vite/
+.eslintcache
+.stylelintcache
+.tsbuildinfo
+
+# test/coverage
+coverage/
+
+# misc
 .DS_Store
-server/public
-vite.config.ts.*
 *.tar.gz
+
+# app-specific
+server/public/

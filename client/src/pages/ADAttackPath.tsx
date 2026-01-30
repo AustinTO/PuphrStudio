@@ -1,16 +1,46 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, GitBranch, AlertTriangle, Shield, Eye } from 'lucide-react';
 import { Link } from 'wouter';
+import { getContent, renderInlineMarkdown } from '@/lib/content';
+
+const iconMap = {
+  Eye,
+  Shield,
+} as const;
+
+type PageContent = {
+  backLabel: string;
+  title: string;
+  subtitle: string;
+  introTitle: string;
+  featureCards: {
+    icon: keyof typeof iconMap;
+    title: string;
+    description: string;
+    bullets: { text: string }[];
+  }[];
+  attackPathsTitle: string;
+  attackPaths: { title: string; description: string }[];
+  closingTitle: string;
+  closingBody: string[];
+  ctaText: string;
+  ctaLink: string;
+};
 
 export default function ADAttackPath() {
+  const { data, html } = getContent<PageContent>('ad-attack-path');
+  const [firstCard, secondCard] = data.featureCards;
+  const FirstIcon = iconMap[firstCard.icon];
+  const SecondIcon = iconMap[secondCard.icon];
+
   return (
     <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <Link href="/">
           <Button variant="ghost" className="mb-8" data-testid="button-back">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Home
+            <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(data.backLabel) }} />
           </Button>
         </Link>
 
@@ -19,65 +49,59 @@ export default function ADAttackPath() {
             <div className="p-3 rounded-lg bg-primary/20 border border-primary/30">
               <GitBranch className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold">Active Directory Attack Path Mapping</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold">
+              <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(data.title) }} />
+            </h1>
           </div>
           <p className="text-xl text-foreground/70">
-            Visualize and eliminate attack paths in your Active Directory before ransomware operators exploit them
+            <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(data.subtitle) }} />
           </p>
         </div>
 
         <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
-            <CardTitle className="text-2xl">The Ransomware Threat</CardTitle>
+            <CardTitle className="text-2xl">
+              <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(data.introTitle) }} />
+            </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4 text-foreground/70">
-            <p>
-              Modern ransomware attacks don't just encrypt files—they first move laterally through your network, 
-              escalating privileges until they control your entire Active Directory domain. Once attackers have 
-              domain admin access, they can deploy ransomware across every system simultaneously.
-            </p>
-            <p>
-              Most organizations don't realize how many paths exist from a compromised user account to complete 
-              domain takeover. Our AD Attack Path Mapping service shows you exactly what attackers see and how 
-              to break those paths before they're exploited.
-            </p>
-          </CardContent>
+          <CardContent className="space-y-4 text-foreground/70" dangerouslySetInnerHTML={{ __html: html }} />
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
-              <Eye className="h-6 w-6 text-primary mb-2" />
-              <CardTitle>BloodHound Analysis</CardTitle>
+              <FirstIcon className="h-6 w-6 text-primary mb-2" />
+              <CardTitle>
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(firstCard.title) }} />
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-foreground/70 mb-4">
-                We use <strong className="text-foreground">BloodHound</strong>, the industry-standard open-source 
-                tool for AD attack path analysis, combined with our expertise in interpreting and remediating findings.
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(firstCard.description) }} />
               </p>
               <ul className="space-y-2 text-sm text-foreground/60">
-                <li>• Complete AD environment mapping</li>
-                <li>• Visual attack path graphs</li>
-                <li>• Privilege escalation chain identification</li>
-                <li>• Kerberoasting and AS-REP roasting detection</li>
+                {firstCard.bullets.map((bullet) => (
+                  <li key={bullet.text}>• <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(bullet.text) }} /></li>
+                ))}
               </ul>
             </CardContent>
           </Card>
 
           <Card className="bg-[#1a2332]/90 border-[#2a3442]">
             <CardHeader>
-              <Shield className="h-6 w-6 text-primary mb-2" />
-              <CardTitle>Expert Guidance</CardTitle>
+              <SecondIcon className="h-6 w-6 text-primary mb-2" />
+              <CardTitle>
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(secondCard.title) }} />
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-foreground/70 mb-4">
-                The tools show you the problems, but fixing them requires expertise. We provide:
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(secondCard.description) }} />
               </p>
               <ul className="space-y-2 text-sm text-foreground/60">
-                <li>• Detailed remediation recommendations</li>
-                <li>• Prioritized fixes based on risk</li>
-                <li>• Group policy configuration guidance</li>
-                <li>• Tiered administration architecture design</li>
+                {secondCard.bullets.map((bullet) => (
+                  <li key={bullet.text}>• <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(bullet.text) }} /></li>
+                ))}
               </ul>
             </CardContent>
           </Card>
@@ -85,72 +109,48 @@ export default function ADAttackPath() {
 
         <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
-            <CardTitle className="text-2xl">Common Attack Paths We Find</CardTitle>
+            <CardTitle className="text-2xl">
+              <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(data.attackPathsTitle) }} />
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <AlertTriangle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold mb-1">Privileged Account Exposure</h3>
-                  <p className="text-sm text-foreground/60">
-                    Domain admins logging into workstations, leaving credentials cached and vulnerable to extraction.
-                  </p>
+              {data.attackPaths.map((item) => (
+                <div key={item.title} className="flex items-start gap-3">
+                  <AlertTriangle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-1">
+                      <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(item.title) }} />
+                    </h3>
+                    <p className="text-sm text-foreground/60">
+                      <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(item.description) }} />
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <AlertTriangle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold mb-1">Excessive Permissions</h3>
-                  <p className="text-sm text-foreground/60">
-                    Regular users with "GenericAll" or "WriteDacl" permissions over high-value targets, creating 
-                    easy escalation paths.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <AlertTriangle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold mb-1">Stale Accounts & Groups</h3>
-                  <p className="text-sm text-foreground/60">
-                    Old service accounts and nested group memberships creating unexpected privilege escalation opportunities.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <AlertTriangle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold mb-1">Kerberoasting Targets</h3>
-                  <p className="text-sm text-foreground/60">
-                    Service accounts with SPNs and weak passwords that can be cracked offline to gain elevated access.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </CardContent>
         </Card>
 
         <Card className="bg-[#1a2332]/90 border-[#2a3442] mb-8">
           <CardHeader>
-            <CardTitle className="text-2xl">Prevent Enterprise-Wide Ransomware</CardTitle>
+            <CardTitle className="text-2xl">
+              <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(data.closingTitle) }} />
+            </CardTitle>
           </CardHeader>
           <CardContent className="text-foreground/70">
-            <p className="mb-4">
-              An attacker who gains initial access through phishing or vulnerability exploitation shouldn't be able 
-              to reach domain admin privileges. By identifying and breaking attack paths, we ensure that even if an 
-              attacker gets in, they can't easily own your enterprise and deploy ransomware.
-            </p>
-            <p>
-              Our assessments show you the specific steps needed to implement a defense-in-depth strategy that makes 
-              lateral movement and privilege escalation exponentially harder for attackers.
-            </p>
+            {data.closingBody.map((paragraph, index) => (
+              <p key={paragraph} className={index === 0 ? 'mb-4' : undefined}>
+                <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(paragraph) }} />
+              </p>
+            ))}
           </CardContent>
         </Card>
 
         <div className="text-center">
-          <Link href="/">
+          <Link href={data.ctaLink}>
             <Button size="lg" className="bg-[#FF6B4A] hover:bg-[#FF6B4A]/90" data-testid="button-contact">
-              Secure Your Active Directory
+              <span dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(data.ctaText) }} />
             </Button>
           </Link>
         </div>
