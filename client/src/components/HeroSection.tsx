@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
-import puphrLogo from '@assets/D43E03E9-D374-4251-AB52-CF5765EB2D8E_1761305321893.png';
+import puphrLogo from '@assets/puphr_logo.svg';
 import { getContent, renderInlineMarkdown } from '@/lib/content';
 
 type HomeContent = {

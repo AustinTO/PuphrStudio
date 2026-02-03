@@ -206,7 +206,7 @@ footer:
   connectHeading: "Connect"
   social:
     - label: "Email me"
-      href: "mailto:hello@puphr.com"
+      href: "mailto:contact@puphr.com"
       icon: "Mail"
       testId: "link-email"
     - label: "LinkedIn"
