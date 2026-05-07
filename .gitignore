@@ -36,3 +36,4 @@ coverage/
 
 # app-specific
 server/public/
+.omx/

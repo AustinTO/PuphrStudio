@@ -3,18 +3,67 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
+const isProduction = process.env.NODE_ENV === "production";
+
+const jsonBodyParser = express.json({
+  limit: "16kb",
+  verify: (req, _res, buf) => {
+    req.rawBody = buf;
+  },
+});
+
+const urlEncodedBodyParser = express.urlencoded({
+  extended: false,
+  limit: "16kb",
+});
+
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "font-src 'self' https://fonts.gstatic.com",
+  "frame-ancestors 'none'",
+  "frame-src 'self' https://customer-blertdcu1j6vaebg.cloudflarestream.com",
+  "img-src 'self' data: blob:",
+  "object-src 'none'",
+  isProduction
+    ? "script-src 'self'"
+    : "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  isProduction
+    ? "connect-src 'self' https://customer-blertdcu1j6vaebg.cloudflarestream.com"
+    : "connect-src 'self' ws: wss: http: https: https://customer-blertdcu1j6vaebg.cloudflarestream.com",
+  ...(isProduction ? ["upgrade-insecure-requests"] : []),
+].join("; ");
+
+const secureHeaders: Record<string, string> = {
+  "Content-Security-Policy": contentSecurityPolicy,
+  "Permissions-Policy": "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "DENY",
+};
 
 declare module 'http' {
   interface IncomingMessage {
     rawBody: unknown
   }
 }
-app.use(express.json({
-  verify: (req, _res, buf) => {
-    req.rawBody = buf;
+
+app.disable("x-powered-by");
+app.set("trust proxy", 1);
+app.use((_req, res, next) => {
+  Object.entries(secureHeaders).forEach(([header, value]) => {
+    res.setHeader(header, value);
+  });
+
+  if (isProduction) {
+    res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
   }
-}));
-app.use(express.urlencoded({ extended: false }));
+
+  next();
+});
+app.use(jsonBodyParser);
+app.use(urlEncodedBodyParser);
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -31,7 +80,7 @@ app.use((req, res, next) => {
     const duration = Date.now() - start;
     if (path.startsWith("/api")) {
       let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
+      if (capturedJsonResponse && res.statusCode >= 400) {
         logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
       }
 

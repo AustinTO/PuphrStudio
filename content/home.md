@@ -37,7 +37,7 @@ services:
           link: "/workstation-hardening"
         - icon: "Globe"
           title: "Secure Website & Domain Setup"
-          description: "One-time delivery: modern site, Cloudflare fronted, Workers-based contact forms, SSL/WAF/DNS hardened. Not managed WordPress."
+          description: "One-time delivery: modern site, Cloudflare fronted, Workers-based contact forms, SSL/WAF/DNS hardened. Not managed WordPress. Optional add-on: managed cloud hosting for one site/domain/zone with a fixed, clearly scoped plan."
           link: "/website-hardening"
         - icon: "Bot"
           title: "AI, Done Securely"
@@ -161,7 +161,7 @@ stats:
       icon: "TrendingDown"
 contact:
   heading: "Get in Touch"
-  subheading: "Tell me what you're dealing with. I'll keep it simple and scoped."
+  subheading: "Tell us what you're dealing with. We'll keep it simple and scoped."
   cardTitle: "Send a quick note"
   form:
     nameLabel: "Name"
@@ -172,12 +172,12 @@ contact:
     messagePlaceholder: "What do you want fixed or improved?"
     submitDefault: "Send Message"
     submitLoading: "Sending..."
-  footerNote: "You can also reach me at"
+  footerNote: "You can also reach us at"
   contactEmail: "contact@puphr.com"
   toastSuccessTitle: "Message sent!"
-  toastSuccessDescription: "Thanks for reaching out. I'll reply soon."
+  toastSuccessDescription: "Thanks for reaching out. We'll reply soon."
   toastErrorTitle: "Error"
-  toastErrorDescription: "Failed to send message. Please try again or email me directly."
+  toastErrorDescription: "Failed to send message. Please try again or email us directly."
   serviceMessages:
     security-audit: "I'm interested in a Vulnerability & Security Audit."
     cloud-security: "I'm interested in Email & Account Lockdown."
@@ -205,7 +205,7 @@ footer:
       testId: "link-footer-solutions"
   connectHeading: "Connect"
   social:
-    - label: "Email me"
+    - label: "Email us"
       href: "mailto:contact@puphr.com"
       icon: "Mail"
       testId: "link-email"

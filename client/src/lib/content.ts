@@ -1,7 +1,14 @@
 import matter from 'gray-matter';
 import { marked } from 'marked';
 
-const globalBuffer = globalThis as typeof globalThis & { Buffer?: unknown };
+type BufferLike = {
+  from(input: string): { toString(): string };
+  isBuffer(value: unknown): boolean;
+};
+
+const globalBuffer = globalThis as typeof globalThis & {
+  Buffer?: typeof globalThis.Buffer | BufferLike;
+};
 
 if (!globalBuffer.Buffer) {
   class SimpleBuffer {
@@ -24,7 +31,7 @@ if (!globalBuffer.Buffer) {
     }
   }
 
-  globalBuffer.Buffer = SimpleBuffer;
+  globalBuffer.Buffer = SimpleBuffer as unknown as typeof globalThis.Buffer;
 }
 
 type MarkdownEntry<T> = {

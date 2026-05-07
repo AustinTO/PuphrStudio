@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-mono);
+  }
+}
+
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(0,0,0, .10);
@@ -76,9 +85,9 @@
   --chart-4: 172 75% 50%;
   --chart-5: 15 85% 55%;
 
-  --font-sans: Inter, sans-serif;
+  --font-sans: "Source Sans 3", sans-serif;
   --font-serif: Georgia, serif;
-  --font-mono: 'Space Grotesk', monospace;
+  --font-mono: "Sora", sans-serif;
   --radius: .5rem;
   --shadow-2xs: 0px 2px 0px 0px hsl(210 10% 10% / 0.00);
   --shadow-xs: 0px 2px 0px 0px hsl(210 10% 10% / 0.00);
@@ -367,4 +376,17 @@
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+@keyframes swim {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-swim {
+  animation: swim 3.2s ease-in-out infinite;
 }
