@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import ParallaxBackground from "@/components/ParallaxBackground";
 import { Toaster } from "@/components/ui/toaster";
 import { Input } from "@/components/ui/input";
@@ -78,29 +78,6 @@ const serviceCards = [
   "Get found locally",
   "Capture cleaner leads",
   "Update without chaos",
-];
-
-const audienceCards = [
-  {
-    title: "Local service businesses",
-    body: "Home services, trades, repair, landscaping, cleaning, and specialty contractors. Look credible before the first call.",
-  },
-  {
-    title: "Professional practices",
-    body: "Doctors, therapists, consultants, attorneys, financial pros, and wellness providers. Make trust easier to choose.",
-  },
-  {
-    title: "Product and ecommerce brands",
-    body: "Supplements, specialty retail, creator products, and Shopify-connected brands. Make the offer easier to buy.",
-  },
-  {
-    title: "Nonprofits and community orgs",
-    body: "Donation-ready paths, program storytelling, volunteer intake, and pages that make the mission easier to trust.",
-  },
-  {
-    title: "Creators and personal brands",
-    body: "Speaking pages, publishing systems, lead magnets, newsletters, and authority hubs that turn attention into action.",
-  },
 ];
 
 const improvementCards = [
@@ -559,8 +536,26 @@ function App() {
   const { toast } = useToast();
   const [contactForm, setContactForm] = useState<ContactFormState>(defaultContactForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showFloatingCta, setShowFloatingCta] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
   const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || "/api/contact";
+
+  useEffect(() => {
+    const updateFloatingCta = () => {
+      const heroBottom = heroRef.current?.getBoundingClientRect().bottom ?? 0;
+      setShowFloatingCta(heroBottom <= 0);
+    };
+
+    updateFloatingCta();
+    window.addEventListener("scroll", updateFloatingCta, { passive: true });
+    window.addEventListener("resize", updateFloatingCta);
+
+    return () => {
+      window.removeEventListener("scroll", updateFloatingCta);
+      window.removeEventListener("resize", updateFloatingCta);
+    };
+  }, []);
 
   const updateContactField =
     (field: keyof Omit<ContactFormState, "needs">) =>
@@ -619,12 +614,14 @@ function App() {
       <Toaster />
 
       <main className="relative z-10 px-4 pb-28 pt-8 sm:px-6 sm:pb-16 lg:px-8">
-        <section className="mx-auto max-w-7xl pt-8">
+        <section ref={heroRef} className="mx-auto max-w-7xl pt-8">
           <div className="grid min-h-[680px] gap-12 rounded-[2rem] border border-white/10 bg-background/72 p-6 backdrop-blur-md sm:p-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center lg:p-14">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/90">Puphr Studio</p>
-              <h1 className="mt-4 max-w-5xl text-4xl font-bold leading-[1.02] text-foreground sm:text-6xl lg:text-7xl">
-                A sharper site. A cleaner brand. A better reason to trust you.
+              <h1 className="mt-4 max-w-5xl text-[2.15rem] font-bold leading-[1.05] text-foreground min-[380px]:text-[2.25rem] min-[420px]:text-4xl sm:text-6xl lg:text-7xl">
+                <span className="block">A sharper site.</span>
+                <span className="block">A cleaner brand.</span>
+                <span className="block">A better reason to trust you.</span>
               </h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-foreground/84 sm:text-xl">
                 Puphr Studio builds modern websites, brand systems, and digital trust foundations for businesses that are
@@ -633,6 +630,15 @@ function App() {
               <p className="mt-6 max-w-3xl rounded-2xl border border-white/10 bg-white/5 p-4 text-base font-semibold leading-7 text-foreground/82">
                 Design polish from a creative studio. Technical discipline from an IT and cybersecurity company.
               </p>
+
+              <div className="mx-auto mt-6 flex max-w-[220px] justify-center lg:hidden">
+                <img
+                  src={puphrStudioLogo}
+                  alt="Puphr Studio icon"
+                  className="animate-swim h-44 w-44 object-contain"
+                  style={{ objectPosition: "center 54%" }}
+                />
+              </div>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a
@@ -655,7 +661,7 @@ function App() {
             </div>
 
             <div className="relative">
-              <div className="mx-auto flex max-w-[340px] justify-center">
+              <div className="mx-auto hidden max-w-[340px] justify-center lg:flex">
                 <img
                   src={puphrStudioLogo}
                   alt="Puphr Studio icon"
@@ -682,24 +688,32 @@ function App() {
           </div>
         </section>
 
-        <section className="mx-auto mt-14 max-w-7xl">
+        <section className="mx-auto mt-8 max-w-7xl">
+          <div className="rounded-[1.5rem] border border-white/10 bg-card/58 p-5 text-base font-semibold leading-7 text-foreground/80 backdrop-blur-sm sm:p-6 sm:text-lg">
+            Built for service businesses, professional practices, ecommerce brands, creators, nonprofits, and local brands
+            that need to look more credible fast.
+          </div>
+        </section>
+
+        <section id="featured-work" className="mx-auto mt-14 max-w-7xl">
           <SectionHeading
-            eyebrow="Who It Is For"
-            title="Built for businesses that need to look sharper fast."
-            body="The offer is not locked to one industry. Puphr Studio builds the public-facing trust layer for serious small businesses, local brands, creators, and growing teams."
+            eyebrow="Featured Work"
+            title="Real builds. Real businesses. Real trust problems solved."
+            body="The work shows what the pitch means in practice: clearer positioning, stronger first impressions, safer contact paths, and sites that feel credible before the first conversation."
           />
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {audienceCards.map((card) => (
-              <InfoCard key={card.title} title={card.title} body={card.body} />
+
+          <div className="mt-8 space-y-8">
+            {featuredProjects.map((project) => (
+              <CaseStudyCard key={project.name} project={project} />
             ))}
           </div>
         </section>
 
         <section className="mx-auto mt-20 max-w-7xl">
           <SectionHeading
-            eyebrow="What Improves"
-            title="Wild atmosphere, clean buying path."
-            body="The design can feel strange, premium, and alive. The business path still has to be obvious: trust faster, get found, convert better, and keep the technical foundation sane."
+            eyebrow="What Puphr Studio Does"
+            title="What these builds have in common."
+            body="After the visual style, the practical work is consistent: make the business easier to understand, easier to trust, easier to contact, and easier to keep running."
           />
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {improvementCards.map((card) => (
@@ -710,27 +724,13 @@ function App() {
 
         <section className="mx-auto mt-20 max-w-7xl">
           <SectionHeading
-            eyebrow="Packages"
+            eyebrow="Ways to Work Together"
             title="Clear builds. Defined scope. No mystery agency fog."
             body="Most builds are fixed-scope, 2 to 6 week projects with clear deliverables and a launch-ready finish."
           />
           <div className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
             {offerCards.map((offer) => (
               <OfferCard key={offer.title} {...offer} />
-            ))}
-          </div>
-        </section>
-
-        <section id="featured-work" className="mx-auto mt-20 max-w-7xl">
-          <SectionHeading
-            eyebrow="Featured Case Studies"
-            title="Proof that the work is not just visual. It changes how the business is understood."
-            body="Each build connects brand, copy, structure, lead flow, and technical reliability so customers see a more credible business before they ever talk to the owner."
-          />
-
-          <div className="mt-8 space-y-8">
-            {featuredProjects.map((project) => (
-              <CaseStudyCard key={project.name} project={project} />
             ))}
           </div>
         </section>
@@ -956,10 +956,14 @@ function App() {
         </div>
       </footer>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-background/88 p-3 backdrop-blur-md sm:hidden">
+      <div
+        className={`fixed bottom-4 right-4 z-40 transition duration-300 ${
+          showFloatingCta ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
+        }`}
+      >
         <a
           href="#contact"
-          className="mx-auto flex min-h-12 max-w-sm items-center justify-center rounded-full bg-primary px-5 text-base font-semibold text-primary-foreground"
+          className="inline-flex min-h-10 items-center justify-center rounded-full border border-primary/40 bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[0_16px_40px_rgba(4,18,21,0.38)] backdrop-blur-md transition hover:brightness-105"
         >
           Get a Presence Check
         </a>
