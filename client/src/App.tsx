@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { ServiceDetailPage, ServicesIndexPage, services } from "@/Services";
 import ufoWinsLandscape1 from "../../UFOWinsLandscape1.webp";
 import ufoWinsLandscape2 from "../../UFOWinsLandscape2.webp";
 import comfortClemson1 from "../../ComfortClemson1.webp";
@@ -74,36 +75,36 @@ const defaultContactForm: ContactFormState = {
 };
 
 const serviceCards = [
-  "Look credible faster",
-  "Get found locally",
-  "Capture cleaner leads",
-  "Update without chaos",
+  { title: "Modern Websites", href: "/services/modern-websites" },
+  { title: "Modern Ecommerce", href: "/services/modern-ecommerce" },
+  { title: "Growth & Integrations", href: "/services/growth-integrations" },
+  { title: "Puphr Care+", href: "/services/care-plus" },
 ];
 
 const improvementCards = [
   {
-    title: "First impression",
-    body: "A sharper brand and homepage so strangers do not have to wonder if you are legit.",
+    title: "Modern Websites",
+    body: "Fast, secure business websites built for clear communication, strong search foundations, easy content management, and room to grow.",
   },
   {
-    title: "Lead flow",
-    body: "Forms that work without inviting spam, junk leads, or plugin chaos.",
+    title: "Modern Ecommerce",
+    body: "Shopify commerce with a more distinctive storefront, better content, dependable infrastructure, and integrations chosen around the business.",
   },
   {
-    title: "Search visibility",
-    body: "Pages built so customers, search engines, and answer engines understand what you do.",
+    title: "Growth & Integrations",
+    body: "Search visibility, booking, CRM connections, automation, analytics, databases, APIs, and other systems that create practical value.",
   },
   {
-    title: "Speed and mobile",
-    body: "Fast pages that feel clean when customers check you from a phone.",
+    title: "Puphr Care+",
+    body: "Reliable hosting, monitoring, maintenance, content support, and personable technical help that continue after launch.",
   },
   {
-    title: "Security and reliability",
-    body: "Secure hosting, protected forms, SSL, DNS sanity, and fewer brittle moving parts.",
+    title: "Brand & Trust",
+    body: "Sharper visual systems, clearer messaging, and safer customer touchpoints that help the business look as credible as it really is.",
   },
   {
-    title: "Content control",
-    body: "A site you can update without calling a developer every time.",
+    title: "Right-sized Technology",
+    body: "Start with the leanest dependable system that meets the need. Add advanced capabilities only when they earn their place.",
   },
 ];
 
@@ -249,12 +250,12 @@ const selectedProjects: Project[] = [
   {
     name: "UFO Racing",
     outcome:
-      "Created a sharper digital presence for a niche performance brand so the site feels as engineered and distinctive as the product itself.",
+      "Replaced an outdated WordPress site and costly legacy GoDaddy setup with a sharper brand, a fast modern website, and reliable hosting backed by personable support.",
     carouselImages: [ufoWinsLandscape1, ufoWinsLandscape2],
     bullets: [
-      "Custom brand presentation that fits the audience instead of looking generic",
-      "Fast static build that keeps the experience crisp and dependable",
-      "Infrastructure choices made to support performance without adding bloat",
+      "Modernized the site design and logo so the public presence better fits the performance brand",
+      "Resolved TLS certificate and legacy hosting issues that had made the old setup unreliable",
+      "Kept the build intentionally lean and easy to maintain instead of adding integrations the business did not need",
     ],
   },
   {
@@ -532,7 +533,7 @@ function CaseStudyCard({ project }: { project: Project }) {
   );
 }
 
-function App() {
+function HomePage() {
   const { toast } = useToast();
   const [contactForm, setContactForm] = useState<ContactFormState>(defaultContactForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -619,13 +620,20 @@ function App() {
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/90">Puphr Studio</p>
               <h1 className="mt-4 max-w-5xl text-[2.15rem] font-bold leading-[1.05] text-foreground min-[380px]:text-[2.25rem] min-[420px]:text-4xl sm:text-6xl lg:text-7xl">
-                <span className="block">A sharper site.</span>
-                <span className="block">A cleaner brand.</span>
-                <span className="block">A better reason to trust you.</span>
+                <span className="block">
+                  A <span className="decoration-accent decoration-[0.06em] underline underline-offset-[0.13em]">sharper</span> site.
+                </span>
+                <span className="block">
+                  A <span className="decoration-accent decoration-[0.06em] underline underline-offset-[0.13em]">cleaner</span> brand.
+                </span>
+                <span className="block">
+                  A <span className="decoration-accent decoration-[0.06em] underline underline-offset-[0.13em]">better</span> reason to{" "}
+                  <span className="text-accent">trust you.</span>
+                </span>
               </h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-foreground/84 sm:text-xl">
-                Puphr Studio builds modern websites, brand systems, and digital trust foundations for businesses that are
-                tired of looking smaller, messier, or less credible than they really are.
+                Puphr Studio designs modern websites and digital systems for businesses that need to look more credible,
+                work more efficiently, and grow without unnecessary technical complexity.
               </p>
               <p className="mt-6 max-w-3xl rounded-2xl border border-white/10 bg-white/5 p-4 text-base font-semibold leading-7 text-foreground/82">
                 Design polish from a creative studio. Technical discipline from an IT and cybersecurity company.
@@ -645,7 +653,7 @@ function App() {
                   href="#contact"
                   className="inline-flex min-h-12 items-center justify-center rounded-full border border-primary/50 bg-primary px-7 py-3 text-base font-semibold text-primary-foreground transition hover:brightness-105"
                 >
-                  Start My Upgrade
+                  Start a Project
                 </a>
                 <a
                   href="#featured-work"
@@ -653,10 +661,16 @@ function App() {
                 >
                   See the Work
                 </a>
+                <a
+                  href="tel:+18645392435"
+                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-3 text-base font-semibold text-foreground transition hover:border-white/25 hover:bg-white/10 sm:hidden"
+                >
+                  Call (864) 539-2435
+                </a>
               </div>
 
               <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-foreground/62">
-                Branding · Websites · Local SEO · Secure Forms · Fast Hosting · Content Systems
+                Modern Websites · Ecommerce · Growth & Integrations · Care+
               </p>
             </div>
 
@@ -671,16 +685,17 @@ function App() {
               </div>
               <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-card/50 p-4 backdrop-blur-sm">
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary/85">
-                  Capabilities Console
+                  Ways Puphr Can Help
                 </p>
                 <div className="grid grid-cols-2 gap-3">
                 {serviceCards.map((item) => (
-                  <div
-                    key={item}
+                  <a
+                    key={item.title}
+                    href={item.href}
                     className="rounded-2xl border border-white/10 bg-background/70 px-4 py-4 text-sm font-semibold leading-5 text-foreground/86"
                   >
-                    {item}
-                  </div>
+                    {item.title}
+                  </a>
                 ))}
                 </div>
               </div>
@@ -690,8 +705,8 @@ function App() {
 
         <section className="mx-auto mt-8 max-w-7xl">
           <div className="rounded-[1.5rem] border border-white/10 bg-card/58 p-5 text-base font-semibold leading-7 text-foreground/80 backdrop-blur-sm sm:p-6 sm:text-lg">
-            Built for service businesses, professional practices, ecommerce brands, creators, nonprofits, and local brands
-            that need to look more credible fast.
+            Start with the website your business needs today. Add ecommerce, booking, automation, AI, custom databases,
+            or other integrations only when they create real value.
           </div>
         </section>
 
@@ -712,13 +727,59 @@ function App() {
         <section className="mx-auto mt-20 max-w-7xl">
           <SectionHeading
             eyebrow="What Puphr Studio Does"
-            title="What these builds have in common."
-            body="After the visual style, the practical work is consistent: make the business easier to understand, easier to trust, easier to contact, and easier to keep running."
+            title="Build what you need now, with room for what comes next."
+            body="Some businesses need a polished, dependable website. Others need commerce, publishing, booking, automation, or connected systems. Puphr recommends the smallest useful foundation and expands it only when the added capability serves a real purpose."
           />
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {improvementCards.map((card) => (
               <InfoCard key={card.title} title={card.title} body={card.body} />
             ))}
+          </div>
+        </section>
+
+        <section id="beyond-wordpress" className="mx-auto mt-20 max-w-7xl scroll-mt-8">
+          <div className="rounded-[2rem] border border-primary/20 bg-primary/10 p-6 backdrop-blur-md sm:p-8 lg:p-10">
+            <SectionHeading
+              eyebrow="A Foundational Philosophy and Service Offering"
+              title="Beyond WordPress"
+              body="Modern websites should be fast, secure, flexible, and easy to evolve—not held together by unnecessary themes, plugins, and legacy hosting products. Puphr Studio chooses a cleaner technology foundation around what each business actually needs."
+            />
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              <article className="rounded-[1.5rem] border border-white/10 bg-background/60 p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-secondary">Move beyond</p>
+                <h3 className="mt-3 text-2xl font-bold text-foreground">Complexity that no longer earns its place.</h3>
+                <p className="mt-4 text-base leading-7 text-foreground/76">
+                  Puphr modernizes outdated, plugin-heavy, or expensive legacy websites with fewer brittle dependencies,
+                  stronger technical foundations, and a clearer path forward.
+                </p>
+              </article>
+
+              <article className="rounded-[1.5rem] border border-white/10 bg-background/60 p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Built for what comes next</p>
+                <h3 className="mt-3 text-2xl font-bold text-foreground">Lean by default. Expandable by design.</h3>
+                <p className="mt-4 text-base leading-7 text-foreground/76">
+                  Start with a fast, secure, easy-to-maintain site. Add content management, ecommerce, booking, CRM,
+                  automation, analytics, AI, or custom integrations only when they create meaningful value.
+                </p>
+              </article>
+            </div>
+
+            <div className="mt-6 flex flex-col gap-4 rounded-[1.5rem] border border-white/10 bg-card/55 p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Modernization in practice</p>
+                <p className="mt-2 max-w-4xl text-base leading-7 text-foreground/78">
+                  UFO Racing chose a lean Beyond WordPress overhaul: a refreshed site and logo, corrected TLS and legacy
+                  hosting problems, dependable hosting, and personable support—without integrations the business did not need.
+                </p>
+              </div>
+              <a
+                href="#contact"
+                className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 text-sm font-semibold text-foreground transition hover:border-primary/40 hover:bg-primary/10"
+              >
+                Discuss a Modernization
+              </a>
+            </div>
           </div>
         </section>
 
@@ -808,6 +869,13 @@ function App() {
               </div>
 
               <form onSubmit={handleContactSubmit} className="space-y-5 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                <p className="text-sm leading-6 text-foreground/70">
+                  Prefer to talk? Call or text{" "}
+                  <a href="tel:+18645392435" className="font-semibold text-primary transition hover:text-primary/80">
+                    (864) 539-2435
+                  </a>
+                  .
+                </p>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="studio-name" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-foreground/68">
@@ -936,16 +1004,17 @@ function App() {
           <div>
             <h3 className="font-semibold uppercase tracking-[0.18em] text-foreground/80">Services</h3>
             <div className="mt-3 grid gap-2">
-              <a href="#contact" className="transition hover:text-primary">Website rebuilds</a>
-              <a href="#contact" className="transition hover:text-primary">Brand refreshes</a>
-              <a href="#contact" className="transition hover:text-primary">Local SEO and AEO</a>
-              <a href="#contact" className="transition hover:text-primary">Secure forms and hosting</a>
+              <a href="/services/modern-websites" className="transition hover:text-primary">Modern Websites</a>
+              <a href="/services/modern-ecommerce" className="transition hover:text-primary">Modern Ecommerce</a>
+              <a href="/services/growth-integrations" className="transition hover:text-primary">Growth & Integrations</a>
+              <a href="/services/care-plus" className="transition hover:text-primary">Puphr Care+</a>
             </div>
           </div>
           <div>
             <h3 className="font-semibold uppercase tracking-[0.18em] text-foreground/80">Contact</h3>
             <div className="mt-3 grid gap-2">
               <a href="mailto:contact@puphr.com" className="transition hover:text-primary">contact@puphr.com</a>
+              <a href="tel:+18645392435" className="transition hover:text-primary">(864) 539-2435</a>
               <span>Upstate SC and beyond</span>
               <a href="https://puphr.com" target="_blank" rel="noreferrer" className="transition hover:text-primary">
                 Main Puphr site
@@ -963,13 +1032,34 @@ function App() {
       >
         <a
           href="#contact"
-          className="inline-flex min-h-10 items-center justify-center rounded-full border border-primary/40 bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[0_16px_40px_rgba(4,18,21,0.38)] backdrop-blur-md transition hover:brightness-105"
+          className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-primary/40 bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[0_16px_40px_rgba(4,18,21,0.38)] backdrop-blur-md transition hover:brightness-105"
         >
+          <img
+            src="/puphr_logo.svg"
+            alt=""
+            aria-hidden="true"
+            className="h-5 w-5 shrink-0"
+          />
           Get a Presence Check
         </a>
       </div>
     </div>
   );
+}
+
+function App() {
+  const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
+  const selectedService = services.find((service) => normalizedPath === `/services/${service.slug}`);
+
+  if (normalizedPath === "/services") {
+    return <ServicesIndexPage />;
+  }
+
+  if (selectedService) {
+    return <ServiceDetailPage service={selectedService} />;
+  }
+
+  return <HomePage />;
 }
 
 export default App;
