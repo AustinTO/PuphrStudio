@@ -1,17 +1,77 @@
-import { ArrowUpRight, ArrowRight, Boxes, Cpu, FlaskConical, Smartphone, Monitor, Workflow, ShieldCheck } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, ArrowRight, Boxes, Cpu, FlaskConical, Smartphone, Monitor, Workflow, ShieldCheck, Menu, X, ChevronDown, BriefcaseBusiness, BookOpen, Compass } from "lucide-react";
 import { featuredProducts, labProducts, productPath, type Product } from "./products";
-import studioLogo from "../../puphr_studio.webp";
 import ParallaxBackground from "./components/ParallaxBackground";
 
 const button = "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold transition hover:border-primary/60 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary";
 const primary = button + " !border-primary/50 !bg-primary !text-primary-foreground";
 const panel = "rounded-[1.5rem] border border-white/10 bg-card/85 p-6 sm:p-8";
 const nav = [["Services","/services"],["Client work","/work"],["Products","/products"],["Labs","/labs"],["Technology","/technology"],["Insights","/insights"]];
+const studioLinks = [
+  {name:"Puphr Labs",href:"/labs",description:"Experiments and emerging products",icon:FlaskConical},
+  {name:"Technology",href:"/technology",description:"Engineering, infrastructure and growth",icon:Cpu},
+  {name:"Insights",href:"/insights",description:"Product stories and useful resources",icon:BookOpen},
+  {name:"About Studio",href:"/about",description:"Our approach and the company behind it",icon:Compass},
+];
+const primaryLinks = [
+  {name:"Services",href:"/services",description:"Websites, software and growth systems",icon:Workflow},
+  {name:"Our work",href:"/work",description:"Client projects and case studies",icon:BriefcaseBusiness},
+  {name:"Products",href:"/products",description:"Independent apps and companion sites",icon:Smartphone},
+];
 export function StudioNav({path="/"}:{path?:string}) {
-  return <header className="relative z-20 mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-5 sm:px-8">
-    <a href="/" className="flex items-center gap-3 font-bold text-foreground"><img src={studioLogo} className="h-10 w-10 object-contain" alt=""/><span>Puphr Studio</span></a>
-    <nav aria-label="Main navigation" className="order-3 flex w-full flex-wrap gap-x-5 gap-y-3 text-sm font-semibold sm:order-none sm:w-auto">{nav.map(([name,href])=><a key={href} href={href} aria-current={path===href?"page":undefined} className={path===href?"text-primary":"text-foreground/80 hover:text-primary"}>{name}</a>)}</nav>
-    <a className={primary} href="/#contact">Start a project</a>
+  const [open,setOpen]=useState<"studio"|"mobile"|null>(null);
+  const headerRef=useRef<HTMLElement>(null);
+  const studioTrigger=useRef<HTMLButtonElement>(null);
+  const mobileTrigger=useRef<HTMLButtonElement>(null);
+  const active=(href:string)=>path===href||path.startsWith(href+"/");
+  const studioActive=studioLinks.some(item=>active(item.href));
+  useEffect(()=>{
+    if(!open)return;
+    const onOutside=(event:PointerEvent)=>{if(event.target instanceof Node&&!headerRef.current?.contains(event.target))setOpen(null);};
+    const onEscape=(event:KeyboardEvent)=>{if(event.key==="Escape"){setOpen(null);(open==="studio"?studioTrigger:mobileTrigger).current?.focus();}};
+    const desktop=window.matchMedia("(min-width: 1024px)");
+    const onResize=()=>setOpen(null);
+    document.addEventListener("pointerdown",onOutside);
+    document.addEventListener("keydown",onEscape);
+    desktop.addEventListener("change",onResize);
+    return()=>{document.removeEventListener("pointerdown",onOutside);document.removeEventListener("keydown",onEscape);desktop.removeEventListener("change",onResize);};
+  },[open]);
+  const navLink="relative inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl px-4 text-sm font-semibold transition-colors hover:bg-white/5 hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+  const action="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-primary px-4 text-sm font-bold text-primary-foreground transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:px-5";
+  const currentClass=(on:boolean)=>on?"bg-primary/10 text-primary":"text-foreground/75";
+  return <header ref={headerRef} className="relative z-50 mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8 lg:pt-6">
+    <div className="relative rounded-2xl border border-white/10 bg-background/95 shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl">
+      <div className="flex min-h-[72px] items-center justify-between gap-3 px-3 sm:px-5 lg:gap-5">
+        <a href="/" aria-label="Puphr Studio home" className="flex min-w-0 shrink-0 items-center gap-2.5 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
+          <img src="/puphr_logo.svg" className="h-10 w-10 shrink-0 object-contain sm:h-11 sm:w-11" alt="" width={44} height={44}/>
+          <span className="flex flex-col leading-none"><span className="text-lg font-bold tracking-tight text-foreground sm:text-xl">Puphr<span className="ml-1.5 font-normal text-foreground/85">Studio</span></span><span className="mt-1 hidden text-[10px] font-semibold uppercase tracking-[.17em] text-foreground/50 sm:block">Design &amp; engineering</span></span>
+        </a>
+        <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">
+          {primaryLinks.map(({name,href})=><a key={href} href={href} aria-current={active(href)?"page":undefined} className={navLink+" "+currentClass(active(href))}>{name}</a>)}
+          <div className="relative">
+            <button type="button" ref={studioTrigger} aria-expanded={open==="studio"} aria-controls="studio-navigation-dropdown" className={navLink+" "+currentClass(studioActive||open==="studio")} onClick={()=>setOpen(open==="studio"?null:"studio")}>Explore Studio <ChevronDown size={15} aria-hidden="true" className={"transition-transform motion-reduce:transition-none "+(open==="studio"?"rotate-180":"")}/></button>
+            <div id="studio-navigation-dropdown" hidden={open!=="studio"} className="absolute right-0 top-full mt-3 w-[330px] rounded-2xl border border-white/15 bg-background p-2 shadow-2xl">
+              <p className="px-3 pb-2 pt-3 text-[10px] font-bold uppercase tracking-[.2em] text-foreground/50">Inside Puphr Studio</p>
+              {studioLinks.map(({name,href,description,icon:Icon})=><a key={href} href={href} aria-current={active(href)?"page":undefined} className={"group flex items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary "+currentClass(active(href))}><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-primary/15 bg-primary/5 text-primary"><Icon size={18} aria-hidden="true"/></span><span className="min-w-0 flex-1"><span className="block text-sm font-bold text-foreground">{name}</span><span className="mt-0.5 block text-xs leading-5 text-foreground/60">{description}</span></span><ArrowUpRight size={15} aria-hidden="true" className="text-foreground/40 group-hover:text-primary"/></a>)}
+            </div>
+          </div>
+        </nav>
+        <div className="flex shrink-0 items-center gap-2">
+          <a href="/#contact" className={action+" hidden sm:inline-flex"}>Start a project <ArrowUpRight size={16} aria-hidden="true"/></a>
+          <button type="button" ref={mobileTrigger} aria-expanded={open==="mobile"} aria-controls="studio-mobile-navigation" aria-label={open==="mobile"?"Close navigation":"Open navigation"} className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-foreground transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary lg:hidden" onClick={()=>setOpen(open==="mobile"?null:"mobile")}>{open==="mobile"?<X size={23} aria-hidden="true"/>:<Menu size={23} aria-hidden="true"/>}</button>
+        </div>
+      </div>
+      <div id="studio-mobile-navigation" hidden={open!=="mobile"} className="border-t border-white/10 p-3 lg:hidden">
+        <nav aria-label="Mobile navigation" className="max-h-[min(70vh,560px)] overflow-y-auto">
+          <p className="px-3 pb-2 pt-1 text-[10px] font-bold uppercase tracking-[.2em] text-foreground/50">Find what you need</p>
+          {primaryLinks.map(({name,href,description,icon:Icon})=><a key={href} href={href} aria-current={active(href)?"page":undefined} onClick={()=>setOpen(null)} className={"flex items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-white/5 "+currentClass(active(href))}><Icon size={20} className="shrink-0 text-primary" aria-hidden="true"/><span className="flex-1"><span className="block font-bold text-foreground">{name}</span><span className="block text-xs text-foreground/60">{description}</span></span><ArrowRight size={16} aria-hidden="true"/></a>)}
+          <div className="my-2 border-t border-white/10"/>
+          <p className="px-3 pb-2 pt-1 text-[10px] font-bold uppercase tracking-[.2em] text-foreground/50">Explore Studio</p>
+          <div className="grid gap-1 min-[420px]:grid-cols-2">{studioLinks.map(({name,href,icon:Icon})=><a key={href} href={href} aria-current={active(href)?"page":undefined} onClick={()=>setOpen(null)} className={"flex min-h-11 items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold hover:bg-white/5 "+currentClass(active(href))}><Icon size={18} className="shrink-0 text-primary" aria-hidden="true"/>{name}</a>)}</div>
+          <a href="/#contact" onClick={()=>setOpen(null)} className={action+" mt-4 flex w-full"}>Start a project <ArrowUpRight size={16} aria-hidden="true"/></a>
+        </nav>
+      </div>
+    </div>
   </header>;
 }
 export function StudioFooter(){
