@@ -17,6 +17,10 @@ for(const route of routes.filter(r=>r.path!=="/contact")){
     await access(join(root,asset.slice(1)));
   }
 }
+const riveAsset=await readFile(join(root,"media/products/usmos-hero-orbits.riv"));
+assert.equal(riveAsset.subarray(0,4).toString("ascii"),"RIVE","Missing genuine Usmos Rive binary");
+const home=await readFile(join(root,"index.html"),"utf8");
+assert.ok(home.includes("Rive") && home.includes("Usmos"),"Missing motion showcase");
 const notFound=await readFile(join(root,"404.html"),"utf8");
 assert.ok(notFound.includes('name="robots" content="noindex"'));
 console.log("Verified "+(routes.length-1)+" static routes, metadata, internal links, and referenced local assets.");

@@ -98,6 +98,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: 1.2.0
         version: 1.2.0(@types/react-dom@18.3.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@rive-app/webgl2':
+        specifier: 2.55.1
+        version: 2.55.1
       '@tanstack/react-query':
         specifier: 5.60.5
         version: 5.60.5(react@18.3.1)
@@ -1863,6 +1866,9 @@ packages:
 
   '@tanstack/query-core@5.60.5':
     resolution: {integrity: sha512-jiS1aC3XI3BJp83ZiTuDLerTmn9P3U95r6p+6/SNauLJaYxfIC4dMuWygwnBHIZxjn2zJqEpj3nysmPieoxfPQ==}
+
+  '@rive-app/webgl2@2.55.1':
+    resolution: {integrity: sha512-HpUu0I74CyqVsznxop0pOyxU4uela/Jn5C8jw+gwQHp+yve5rYhcv1q4Dc7YCj/dhpAGvnI7sGDnYI9NPqU5nQ==}
 
   '@tanstack/react-query@5.60.5':
     resolution: {integrity: sha512-M77bOsPwj1wYE56gk7iJvxGAr4IC12NWdIDhT+Eo8ldkWRHMvIR8I/rufIvT1OXoV/bl7EECwuRuMlxxWtvW2Q==}
@@ -4764,6 +4770,8 @@ snapshots:
       vite: 5.4.20(@types/node@20.16.11)(lightningcss@1.30.2)
 
   '@tanstack/query-core@5.60.5': {}
+
+  '@rive-app/webgl2@2.55.1': {}
 
   '@tanstack/react-query@5.60.5(react@18.3.1)':
     dependencies:
