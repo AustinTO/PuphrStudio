@@ -13,54 +13,54 @@ export const products: Product[] = [
     technology:["Flutter","Dart","Geometry engine","Cloudflare","RevenueCat"],
     website:"https://curveset.app/",demo:"https://curveset.app/#calculator",demoLabel:"Try the free estimator",
     play:"https://play.google.com/store/apps/details?id=com.puphr.CurveSet&referrer=utm_source%3Dpuphr_studio%26utm_medium%3Dportfolio",support:"https://curveset.app/support/",
-    image:"https://curveset.app/assets/screenshots/app-3d-cutaway.webp",imageAlt:"CurveSet textured retaining wall construction cutaway",
+    image:"https://play-lh.googleusercontent.com/mFpKB8fjwU24v0JzGuT0kJrRD--ucV2DG1caMYVtVZHzANaJtGBqAhgxSoawHUSVY0XvvOmmcOR82dIINQ-f2A=w526-h296-rw",imageAlt:"Official CurveSet Google Play promotional screenshot 1",
     gallery: [
       {
-        "src": "https://curveset.app/assets/screenshots/app-3d-cutaway.webp",
-        "title": "Construction cutaway",
-        "alt": "Textured 3D cutaway showing trench, base stone, drain stone and wall drain route",
+        "src": "https://play-lh.googleusercontent.com/mFpKB8fjwU24v0JzGuT0kJrRD--ucV2DG1caMYVtVZHzANaJtGBqAhgxSoawHUSVY0XvvOmmcOR82dIINQ-f2A=w526-h296-rw",
+        "title": "CurveSet app preview 1",
+        "alt": "Official CurveSet Google Play promotional screenshot 1",
         "kind": "screenshot"
       },
       {
-        "src": "https://curveset.app/assets/screenshots/app-s-wall-3d.webp",
-        "title": "S-shaped wall in 3D",
-        "alt": "Cherry Hill S Wall with textured Keystone Compac III masonry blocks",
+        "src": "https://play-lh.googleusercontent.com/S9yObX2Wz5zKCGvnryzjepWLlmPxjURh67J2KIUGj3grHrztX-2OKFY_7PsAFzr_pxkuLWM6jslY8nivV6Gr1A=w526-h296-rw",
+        "title": "CurveSet app preview 2",
+        "alt": "Official CurveSet Google Play promotional screenshot 2",
         "kind": "screenshot"
       },
       {
-        "src": "https://curveset.app/assets/screenshots/app-wall-shapes.webp",
-        "title": "Six wall shapes",
-        "alt": "Straight, inside and outside curves, L, U and S wall layouts",
+        "src": "https://play-lh.googleusercontent.com/c-bFlIYo9_EVRnPgR7xnDlCpV1ZPqeZeR2DOCPk0NxOvdvRl5colUgBWLo_l8kUdnnrwavl5nbk3lyPBR3XHBw=w526-h296-rw",
+        "title": "CurveSet app preview 3",
+        "alt": "Official CurveSet Google Play promotional screenshot 3",
         "kind": "screenshot"
       },
       {
-        "src": "https://curveset.app/assets/screenshots/app-course-inspection.webp",
-        "title": "Course inspection",
-        "alt": "Course four inspection with translucent upper courses and radius readout",
+        "src": "https://play-lh.googleusercontent.com/xviE0sqnC5HZHto5QGYsDQKvK85baoLXxQZv4wRyXaAp8SALQEXNNCwVnHS7hEIKyzUkbSBfLPS9OfJ_5Ztngw=w526-h296-rw",
+        "title": "CurveSet app preview 4",
+        "alt": "Official CurveSet Google Play promotional screenshot 4",
         "kind": "screenshot"
       },
       {
-        "src": "https://curveset.app/assets/screenshots/app-cross-section.webp",
-        "title": "Interactive cross-section",
-        "alt": "Station cross-section with wall height, drain zone, stone base and collector pipe",
+        "src": "https://play-lh.googleusercontent.com/WWmm-8LWbJ__fyThEMP2xzqUvElldL0v896GKks1mZjpnw6QyiAhnyGzQrjLuYQXcrmsQjHqKpGA0nI8azQOdD4=w526-h296-rw",
+        "title": "CurveSet app preview 5",
+        "alt": "Official CurveSet Google Play promotional screenshot 5",
         "kind": "screenshot"
       },
       {
-        "src": "https://curveset.app/assets/screenshots/app-takeoff-costing.webp",
-        "title": "Material takeoff and costing",
-        "alt": "Material quantities, pricing completeness and job cost breakdown",
+        "src": "https://play-lh.googleusercontent.com/3mgoqTT5Cn3DE8K-LCQBBX2H3u0Xu-wWOG9_OQ3Br4sQivxlqegQ7ue0mrZoeTbeFwyumH9Pus8w5YKKFs03=w526-h296-rw",
+        "title": "CurveSet app preview 6",
+        "alt": "Official CurveSet Google Play promotional screenshot 6",
         "kind": "screenshot"
       },
       {
-        "src": "https://curveset.app/assets/screenshots/app-pro-pdf.webp",
-        "title": "Printable field worksheets",
-        "alt": "Pro project worksheet PDF export settings",
+        "src": "https://play-lh.googleusercontent.com/CW3WBlIwAZoUBklO6woptDu_CsATR7ReXDeCn0_cvZUDWs6XvU8sFYROjNgrLXzKwZY0jx5wQScWysUV89JQ=w526-h296-rw",
+        "title": "CurveSet app preview 7",
+        "alt": "Official CurveSet Google Play promotional screenshot 7",
         "kind": "screenshot"
       },
       {
-        "src": "https://curveset.app/assets/screenshots/app-installation-guide.webp",
-        "title": "Installation guide",
-        "alt": "Numbered block plan and calculated cut station measurements",
+        "src": "https://play-lh.googleusercontent.com/aFl6rBvN7aQ73-OVugOaZ2uWRZyLAoY4TNIzTg9-gTTb_8qMTHT0iNGn_fc5ubfihSuUsgF6lDfTTCgv82_Sxp8=w526-h296-rw",
+        "title": "CurveSet app preview 8",
+        "alt": "Official CurveSet Google Play promotional screenshot 8",
         "kind": "screenshot"
       }
     ],
