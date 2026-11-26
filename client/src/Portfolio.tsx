@@ -18,8 +18,11 @@ export function StudioFooter(){
   return <footer className="relative z-10 mx-auto mt-20 max-w-7xl border-t border-white/10 px-6 py-10"><div className="flex flex-wrap items-start justify-between gap-6"><div><h2 className="text-xl font-bold">Puphr Studio</h2><p className="mt-2 max-w-md text-foreground/75">Independent software and thoughtful digital experiences by Puphr LLC.</p></div><nav aria-label="Footer navigation" className="flex flex-wrap gap-4 text-sm">{[...nav,["About","/about"],["Contact","/#contact"]].map(([n,h])=><a className="hover:text-primary" href={h} key={h}>{n}</a>)}</nav></div><p className="mt-6 text-sm text-foreground/65"><a href="https://puphr.com/">Puphr LLC</a> · <a href="mailto:contact@puphr.com">contact@puphr.com</a> · Upstate SC and beyond</p></footer>;
 }
 export function ProductArt({p}:{p:Product}){
+  const screenshot=p.gallery?.find(m=>m.kind==="screenshot");
+  const cover=screenshot?.src ?? p.image;
+  const coverAlt=screenshot?.alt ?? p.imageAlt ?? p.name;
   return <div className="relative flex min-h-[220px] items-center justify-center overflow-hidden rounded-t-[1.5rem] border-b border-white/10" style={{background:"radial-gradient(ellipse at 65% 15%, "+p.color+"30, transparent 60%), #101e25"}}>
-    {p.image?<img src={p.image} alt={p.imageAlt||p.name} className="max-h-[280px] w-full object-contain p-4" loading="lazy" decoding="async" referrerPolicy="no-referrer"/>:
+    {cover?<img src={cover} alt={coverAlt} className="h-[260px] w-full object-contain p-4" loading="lazy" decoding="async" referrerPolicy="no-referrer"/>:
       <div className="flex flex-col items-center gap-4 px-5 py-10 text-center" style={{color:p.color}}><div className="rounded-3xl border border-current p-5">{p.status==="Published"?<Smartphone size={44}/>:<FlaskConical size={44}/>}</div><span className="text-2xl font-bold tracking-tight">{p.name}</span><span className="text-xs uppercase tracking-widest">{p.category}</span></div>}
   </div>
 }
@@ -49,10 +52,31 @@ function Heading({eyebrow,title,body}:{eyebrow:string;title:string;body:string})
 export function ProductDirectory({labs=false}:{labs?:boolean}){
   return <Shell path={labs?"/labs":"/products"}><Heading eyebrow={labs?"Puphr Labs":"Puphr products"} title={labs?"Experiments with practical purpose.":"Independent products. Real problems."} body={labs?"A look at the software and hardware integrations we are actively developing. Features and availability may change.":"Tools, experiences and companion websites created and operated by Puphr LLC."}/><div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{(labs?labProducts:featuredProducts).map(p=><ProductCard p={p} key={p.slug}/>)}</div><section className={panel+" mt-8"}><h2 className="text-2xl font-bold">{labs?"See the products":"Explore what we're building next"}</h2><a className={button+" mt-4"} href={labs?"/products":"/labs"}>{labs?"Product portfolio":"Puphr Labs"} <ArrowRight size={16}/></a></section></Shell>
 }
+function ProductGallery({p}:{p:Product}){
+  if(!p.gallery?.length)return null;
+  const screenshots=p.gallery.filter(m=>m.kind==="screenshot");
+  const artwork=p.gallery.filter(m=>m.kind==="artwork");
+  return <div className="mt-8 space-y-8">
+    {[{title:p.status==="In development"?"Development screenshots":"App screenshots",items:screenshots,description:"Actual app previews. Select any image to view it at its available full size."},{title:"Visual identity & companion experience",items:artwork,description:"Original product artwork from the companion website, not captured mobile app screens."}].filter(group=>group.items.length>0).map(group=><section key={group.title} className={panel}>
+      <div className="flex flex-wrap items-baseline justify-between gap-2"><h2 className="text-2xl font-bold">{group.title}</h2><span className="text-sm text-foreground/65">{group.items.length} {group.items.length===1?"image":"images"}</span></div>
+      <p className="mt-2 max-w-3xl text-foreground/75">{group.description}</p>
+      <div className="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+        {group.items.map(m=><figure key={m.src} className="min-w-0 overflow-hidden rounded-xl border border-white/10 bg-background/70">
+          <a href={m.src} target="_blank" rel="noopener noreferrer" className="group relative flex h-[240px] items-center justify-center p-2 sm:h-[320px]" aria-label={"Open image: "+m.title}>
+            <img src={m.src} alt={m.alt} className="h-full w-full object-contain transition group-hover:scale-[1.02]" loading="lazy" decoding="async" referrerPolicy="no-referrer"/>
+            <span className="absolute bottom-2 right-2 rounded-full border border-white/20 bg-background/90 p-2 text-primary"><ArrowUpRight size={16} aria-hidden="true"/></span>
+          </a>
+          <figcaption className="border-t border-white/10 px-3 py-3 text-sm font-semibold leading-snug">{m.title}</figcaption>
+        </figure>)}
+      </div>
+    </section>)}
+  </div>;
+}
 export function ProductDetail({p}:{p:Product}){
   const isLab=p.status==="In development";
   return <Shell path={isLab?"/labs":"/products"}><a href={isLab?"/labs":"/products"} className="mb-5 inline-block text-sm text-primary">← {isLab?"All Labs projects":"All products"}</a>
-    <div className="grid gap-6 lg:grid-cols-[1.05fr_.95fr]"><div className={panel}><p className="text-xs uppercase tracking-[.24em] font-semibold" style={{color:p.color}}>{p.status} · {p.category}</p><h1 className="mt-4 text-4xl font-bold sm:text-6xl">{p.name}</h1><p className="mt-5 text-2xl font-semibold">{p.tagline}</p><p className="mt-4 text-lg leading-8 text-foreground/80">{p.description}</p><div className="mt-6 flex flex-wrap gap-3">{p.website&&<a className={primary} href={p.website}>Visit product website <ArrowUpRight size={16}/></a>}{p.play&&<a className={button} href={p.play}>Google Play <ArrowUpRight size={16}/></a>}{p.demo&&<a className={button} href={p.demo}>{p.demoLabel} <ArrowUpRight size={16}/></a>}</div>{p.note&&<p className="mt-6 border-t border-white/10 pt-4 text-sm leading-6 text-foreground/70">{p.note}</p>}</div><div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-card/80"><ProductArt p={p}/><div className="p-5 text-sm text-foreground/70">{p.image?"Product artwork or actual product screenshot":"Studio project identity · development preview"}</div></div></div>
+    <div className="grid gap-6 lg:grid-cols-[1.05fr_.95fr]"><div className={panel}><p className="text-xs uppercase tracking-[.24em] font-semibold" style={{color:p.color}}>{p.status} · {p.category}</p><h1 className="mt-4 text-4xl font-bold sm:text-6xl">{p.name}</h1><p className="mt-5 text-2xl font-semibold">{p.tagline}</p><p className="mt-4 text-lg leading-8 text-foreground/80">{p.description}</p><div className="mt-6 flex flex-wrap gap-3">{p.website&&<a className={primary} href={p.website}>Visit product website <ArrowUpRight size={16}/></a>}{p.play&&<a className={button} href={p.play}>Google Play <ArrowUpRight size={16}/></a>}{p.demo&&<a className={button} href={p.demo}>{p.demoLabel} <ArrowUpRight size={16}/></a>}</div>{p.note&&<p className="mt-6 border-t border-white/10 pt-4 text-sm leading-6 text-foreground/70">{p.note}</p>}</div><div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-card/80"><ProductArt p={p}/><div className="p-5 text-sm text-foreground/70">{p.gallery?.some(m=>m.kind==="screenshot")?(isLab?"Actual development screenshot":"Actual app preview"):p.image?"Original product artwork":"Studio project identity · development preview"}</div></div></div>
+    <ProductGallery p={p}/>
     <section className="mt-8 grid gap-6 lg:grid-cols-2"><div className={panel}><h2 className="text-2xl font-bold">Product capabilities</h2><ul className="mt-5 grid gap-3">{p.capabilities.map(c=><li key={c} className="flex items-start gap-3 leading-7 text-foreground/80"><span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-primary"/>{c}</li>)}</ul></div><div className={panel}><h2 className="text-2xl font-bold">Engineering & growth</h2><p className="mt-4 leading-7 text-foreground/80">{p.business}</p><div className="mt-5 flex flex-wrap gap-2">{p.technology.map(t=><span key={t} className="rounded-full border border-white/15 px-3 py-1 text-sm">{t}</span>)}</div></div></section>
     <section className={panel+" mt-8"}><h2 className="text-2xl font-bold">Need a system built for your own market?</h2><p className="mt-3 text-foreground/75">We bring the same design, development and launch discipline to client work.</p><div className="mt-5 flex flex-wrap gap-3"><a href="/services/product-launch-growth" className={primary}>Product launch & growth</a><a href="/#contact" className={button}>Talk to Studio</a>{p.support&&<a href={p.support} className={button}>Product support</a>}</div></section>
     <div className="mt-10 grid gap-5 md:grid-cols-3">{(isLab?labProducts:featuredProducts).filter(x=>x.slug!==p.slug).map(x=><ProductCard p={x} key={x.slug}/>)}</div>
