@@ -3,7 +3,7 @@ export type Product = {
   slug: string; name: string; category: string; status: "Published" | "Prelaunch" | "In development";
   color: string; tagline: string; description: string; capabilities: string[]; technology: string[];
   website?: string; demo?: string; demoLabel?: string; play?: string; support?: string;
-  image?: string; imageAlt?: string; gallery?: ProductMedia[]; business: string; note?: string;
+  image?: string; imageAlt?: string; cover?: string; coverAlt?: string; gallery?: ProductMedia[]; business: string; note?: string;
 };
 export const products: Product[] = [
   {slug:"curveset",name:"CurveSet",category:"Construction technology",status:"Published",color:"#a5bf85",
@@ -13,6 +13,7 @@ export const products: Product[] = [
     technology:["Flutter","Dart","Geometry engine","Cloudflare","RevenueCat"],
     website:"https://curveset.app/",demo:"https://curveset.app/#calculator",demoLabel:"Try the free estimator",
     play:"https://play.google.com/store/apps/details?id=com.puphr.CurveSet&referrer=utm_source%3Dpuphr_studio%26utm_medium%3Dportfolio",support:"https://curveset.app/support/",
+    cover:"https://play-lh.googleusercontent.com/S9yObX2Wz5zKCGvnryzjepWLlmPxjURh67J2KIUGj3grHrztX-2OKFY_7PsAFzr_pxkuLWM6jslY8nivV6Gr1A=w526-h296-rw",coverAlt:"CurveSet promotional app screenshot showing advanced wall planning",
     image:"https://play-lh.googleusercontent.com/mFpKB8fjwU24v0JzGuT0kJrRD--ucV2DG1caMYVtVZHzANaJtGBqAhgxSoawHUSVY0XvvOmmcOR82dIINQ-f2A=w526-h296-rw",imageAlt:"Official CurveSet Google Play promotional screenshot 1",
     gallery: [
       {
@@ -173,6 +174,13 @@ export const products: Product[] = [
     ],
     business:"A distinct editorial site and free public preview introduce the experience before launch; the planned subscription is designed to cover both partners.",
     note:"In active development. Security review, store approval and production availability are not yet confirmed."},
+  {slug:"bleachers",name:"Bleachers",category:"Live sports & media infrastructure",status:"In development",color:"#8ee7a0",
+    tagline:"The game is more than the livestream.",
+    description:"A phone-first recreational sports broadcasting platform designed around live video, rewind, game events and synchronized camera angles. Bleachers also serves as a proving ground for reusable low-latency mobile media infrastructure.",
+    capabilities:["Native Android camera, microphone and hardware-encoded H.264/AAC live publishing","Live score, clock and game events synchronized to an authoritative game timeline","Browser viewing with WebTransport and WebCodecs, rolling DVR and event-based replay","Custom expo-moq-webtransport native bridge for Media over QUIC (MoQ)","Independent replay archive and live-first capture recovery","Team and organizer workflows, AI-assisted highlight signals and future multi-angle coverage"],
+    technology:["Expo / React Native","Media over QUIC (MoQ / MOQT draft-16)","WebTransport / HTTP/3","Rust / UniFFI","Kotlin / Swift","Cloudflare Realtime","Durable Objects","D1 / R2","WebCodecs"],
+    business:"Bleachers explores a more interactive alternative to conventional one-way sports streaming. The custom native WebTransport module bridges Expo and Cloudflare's experimental MoQ relay, enabling a reusable foundation for future live-video apps, connected cameras and media workflows. A transport abstraction keeps the architecture adaptable as MoQ evolves.",
+    note:"In active development. Native Android publishing and browser playback are documented in the project; iOS release validation, broad field testing and future multi-angle capabilities are not yet confirmed. Archived replay currently contains video only."},
   {slug:"suretick",name:"SureTick",category:"Applied AI",status:"In development",color:"#79e3bc",
     tagline:"See it. Check it. Know it.",
     description:"An active visual checklist and inspection platform designed around camera-assisted verification and reusable checks.",
