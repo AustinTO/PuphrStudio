@@ -123,9 +123,9 @@ export const products: Product[] = [
     note:"A counter reset does not replace inspection or servicing of saturated waste ink pads."},
   {slug:"usmos",name:"Usmos",category:"Relationship enrichment",status:"Prelaunch",color:"#c8a2e8",
     tagline:"Our universe. Just us.",
-    description:"An original couples experience focused on shared moments, guided journeys, playful activities and a private space for two, accompanied by an editorial and research-led website.",
-    capabilities:["Personalized onboarding and collaborative experiences","Original visual identity and interactive previews","Shared rituals, questions and guided journeys","Pair-based subscription architecture"],
-    technology:["Flutter","Cloudflare Workers","D1","RevenueCat","Rive"],
+    description:"A privacy-first couples experience for shared moments, guided journeys and playful activities, designed around end-to-end encryption (E2EE) and a private digital space for two.",
+    capabilities:["Personalized onboarding and collaborative experiences","Original visual identity and interactive previews","Shared rituals, questions and guided journeys","Client-side end-to-end encryption for private shared content, with encrypted local storage","Pair-based subscription architecture"],
+    technology:["Flutter","Cloudflare Workers","D1","RevenueCat","Rive","E2EE","SQLCipher"],
     website:"https://usmos.app/",demo:"https://usmos.app/#spark",demoLabel:"Try a Daily Spark",
     image:"https://usmos.app/assets/theme_inner_world.webp",imageAlt:"Usmos illustrated inner world theme",
     gallery: [
@@ -172,8 +172,8 @@ export const products: Product[] = [
         "kind": "artwork"
       }
     ],
-    business:"A distinct editorial site and free public preview introduce the experience before launch; the planned subscription is designed to cover both partners.",
-    note:"In active development. Security review, store approval and production availability are not yet confirmed."},
+    business:"Usmos combines a research-led editorial site and free public preview with a planned subscription for both partners. Its developing security architecture encrypts private shared content on the devices before transmission and uses encrypted local storage, so privacy is an architectural decision rather than a decorative feature.",
+    note:"In active development. End-to-end encryption is a core design goal with client protocol implementation in place; independent cryptographic review, physical-device validation, store approval and production availability remain unconfirmed."},
   {slug:"bleachers",name:"Bleachers",category:"Live sports & media infrastructure",status:"In development",color:"#8ee7a0",
     tagline:"The game is more than the livestream.",
     description:"A phone-first recreational sports broadcasting platform designed around live video, rewind, game events and synchronized camera angles. Bleachers also serves as a proving ground for reusable low-latency mobile media infrastructure.",
