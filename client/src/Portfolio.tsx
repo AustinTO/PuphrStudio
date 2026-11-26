@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ArrowRight, Boxes, Cpu, FlaskConical, Smartphone, Monitor, Workflow, ShieldCheck, Menu, X, ChevronDown, BriefcaseBusiness, BookOpen, Compass, Radio, Video } from "lucide-react";
 import { featuredProducts, labProducts, productPath, type Product } from "./products";
 import ParallaxBackground from "./components/ParallaxBackground";
+import UsmosMotion from "./components/UsmosMotion";
 
 const button = "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold transition hover:border-primary/60 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary";
 const primary = button + " !border-primary/50 !bg-primary !text-primary-foreground";
@@ -86,9 +87,9 @@ export function ProductArt({p}:{p:Product}){
       <div className="flex flex-col items-center gap-4 px-5 py-10 text-center" style={{color:p.color}}><div className="rounded-3xl border border-current p-5">{p.status==="Published"?<Smartphone size={44}/>:<FlaskConical size={44}/>}</div><span className="text-2xl font-bold tracking-tight">{p.name}</span><span className="text-xs uppercase tracking-widest">{p.category}</span></div>}
   </div>
 }
-export function ProductCard({p}:{p:Product}){
+export function ProductCard({p,interactiveMotion=false}:{p:Product;interactiveMotion?:boolean}){
   return <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-white/10 bg-card/85 transition hover:border-primary/40">
-    <a href={productPath(p)} aria-label={"Explore "+p.name}><ProductArt p={p}/></a>
+    {interactiveMotion && p.slug==="usmos" ? <UsmosMotion/> : <a href={productPath(p)} aria-label={"Explore "+p.name}><ProductArt p={p}/></a>}
     <div className="flex flex-1 flex-col p-6"><div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground/65"><span style={{color:p.color}}>{p.status}</span><span>·</span><span>{p.category}</span></div>
     <h3 className="mt-3 text-2xl font-bold">{p.name}</h3><p className="mt-2 font-semibold">{p.tagline}</p><p className="mt-3 flex-1 leading-7 text-foreground/75">{p.description}</p>
     <a className="mt-5 inline-flex items-center gap-2 font-bold text-primary" href={productPath(p)}>Explore project <ArrowRight size={17}/></a></div>
@@ -100,7 +101,7 @@ export function ProductSection({labs=false}:{labs?:boolean}){
     <p className="text-xs font-semibold uppercase tracking-[.28em] text-primary">{labs?"Puphr Labs":"Original software"}</p>
     <div className="mt-3 flex flex-wrap items-end justify-between gap-4"><h2 className="max-w-3xl text-3xl font-bold leading-tight sm:text-5xl">{labs?"Exploring what comes next.":"Built for the world, not just the brief."}</h2><a href={labs?"/labs":"/products"} className={button}>{labs?"Explore Labs":"All products"} <ArrowRight size={16}/></a></div>
     <p className="mt-4 max-w-3xl text-lg leading-8 text-foreground/75">{labs?"Active development projects, not promises of availability.":"Our own apps and companion websites turn specialized problems into useful, independently branded software products."}</p>
-    <div className={"mt-8 grid gap-5 "+(labs?"sm:grid-cols-2 lg:grid-cols-3":"md:grid-cols-3")}>{items.map(p=><ProductCard key={p.slug} p={p}/>)}</div>
+    <div className={"mt-8 grid gap-5 "+(labs?"sm:grid-cols-2 lg:grid-cols-3":"md:grid-cols-3")}>{items.map(p=><ProductCard key={p.slug} p={p} interactiveMotion={!labs && p.slug==="usmos"}/>)}</div>
   </section>
 }
 function Shell({path,children}:{path:string;children:React.ReactNode}){

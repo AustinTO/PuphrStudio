@@ -1,4 +1,3 @@
-import UsmosMotion from "./components/UsmosMotion";
 import { StudioNav, StudioFooter, ProductSection, ProductDirectory, ProductDetail, TechnologyPage, InsightsPage, AboutPage, ClientWorkPage, ClientDetailPage, NotFoundPage } from "./Portfolio";
 import { products, productPath, productRoutes } from "./products";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
@@ -739,16 +738,13 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto mt-16 grid max-w-7xl gap-7 rounded-[1.5rem] border border-primary/20 bg-card/80 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.6fr)] lg:items-center lg:gap-10">
-          <div>
+        <section className="mx-auto mt-16 max-w-7xl rounded-[1.5rem] border border-primary/20 bg-card/80 p-6 sm:p-8">
             <SectionHeading eyebrow="Product engineering" title="From first idea to a product that grows." body="Our own apps combine product design, software engineering, search-led growth and secure infrastructure. From custom Rive experiences and geometry engines to native real-time video transport, we build the underlying technology when the product demands it."/>
             <div className="mt-5 flex flex-wrap gap-3">
               <a href="/technology" className="rounded-full border border-primary/40 px-5 py-3 font-semibold text-primary">Explore our technology</a>
               <a href="/labs/bleachers" className="rounded-full border border-primary/40 px-5 py-3 font-semibold text-primary">Bleachers · Media over QUIC</a>
               <a href="/services/product-launch-growth" className="rounded-full bg-primary px-5 py-3 font-semibold text-primary-foreground">Product Launch & Growth</a>
             </div>
-          </div>
-          <UsmosMotion/>
         </section>
         <section id="beyond-wordpress" className="mx-auto mt-20 max-w-7xl scroll-mt-8">
           <div className="rounded-[2rem] border border-primary/20 bg-primary/10 p-6 backdrop-blur-md sm:p-8 lg:p-10">

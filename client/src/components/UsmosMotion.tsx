@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Pause, Play } from "lucide-react";
+import { Pause, Play } from "lucide-react";
 
 // Original scripted Usmos companion-site scene (WebHeroOrbits / WebHeroOrbitsSM).
 // Keep the renderer and WASM local to Studio; load only when the showcase is visible.
@@ -20,7 +20,10 @@ export default function UsmosMotion() {
       setVisible(true);
       return () => preference.removeEventListener("change", sync);
     }
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.1 });
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) setReady(false);
+      setVisible(entry.isIntersecting);
+    }, { threshold: 0.1 });
     observer.observe(stage.current);
     return () => {
       observer.disconnect();
@@ -78,21 +81,19 @@ export default function UsmosMotion() {
 
   const playing = enabled && visible && ready && !failed;
   return (
-    <figure className="min-w-0 overflow-hidden rounded-[1.25rem] border border-white/10 bg-background/65">
-      <div ref={stage} className="relative mx-auto aspect-square max-w-[300px] overflow-hidden">
-        <img src="https://usmos.app/assets/theme_inner_world.webp" alt="" loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full object-cover ${playing ? "opacity-0" : "opacity-100"}`}/>
+    <figure data-usmos-rive-card className="relative h-[260px] min-w-0 overflow-hidden rounded-t-[1.5rem] border-b border-white/10 bg-[#151328]">
+      <div ref={stage} className="relative h-full w-full" style={{background:"radial-gradient(ellipse at 50% 35%, #342341, #151328 75%)"}}>
+        <img src="https://usmos.app/assets/theme_inner_world.webp" alt="Usmos illustrated inner world theme" loading="lazy" decoding="async" referrerPolicy="no-referrer" className={`absolute inset-0 h-full w-full object-contain p-3 ${playing ? "opacity-0" : "opacity-100"}`}/>
         <canvas ref={canvas} aria-hidden="true" className={`absolute inset-0 h-full w-full touch-pan-y ${playing ? "opacity-100" : "pointer-events-none opacity-0"}`}/>
       </div>
-      <figcaption className="border-t border-white/10 p-4 sm:p-5">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[.18em] text-primary">Live motion · Rive</p>
-          {!failed && <button type="button" onClick={() => {setReady(false); setEnabled(value => !value);}} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-3 text-xs font-semibold hover:border-primary/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
-            {enabled ? <Pause size={14} aria-hidden="true"/> : <Play size={14} aria-hidden="true"/>}
-            {enabled ? "Pause motion" : "Play motion"}
-          </button>}
+      <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-black/80 to-transparent px-3 pb-3 pt-8">
+        <div className="min-w-0 text-white">
+          <p className="text-[10px] font-semibold uppercase tracking-[.16em] text-[#e5c9fb]">Interactive Rive experience</p>
+          <p className="mt-1 text-xs text-white/80">{playing ? "Move or touch to explore" : failed ? "Original Usmos artwork" : enabled ? "Original Usmos motion" : "Motion paused"}</p>
         </div>
-        <p className="mt-2 text-sm leading-6 text-foreground/80">An original Usmos scene: twin galaxies, scripted orbital motion and pointer-responsive depth. {playing ? "Move your pointer or touch the scene to explore." : failed ? "Static artwork shown when live rendering is unavailable." : "Motion can be paused or enabled at any time."}</p>
-        <a href="/products/usmos" className="mt-2 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-primary hover:underline">Explore Usmos <ArrowUpRight size={15} aria-hidden="true"/></a>
+        {!failed && <button type="button" aria-label={enabled ? "Pause Usmos animation" : "Play Usmos animation"} title={enabled ? "Pause motion" : "Play motion"} onClick={() => {setReady(false); setEnabled(value => !value);}} className="pointer-events-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25 bg-black/60 text-white hover:bg-black/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">
+          {enabled ? <Pause size={16} aria-hidden="true"/> : <Play size={16} aria-hidden="true"/>}
+        </button>}
       </figcaption>
     </figure>
   );
