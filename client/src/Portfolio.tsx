@@ -82,7 +82,7 @@ export function ProductArt({p}:{p:Product}){
   const cover=p.cover ?? screenshot?.src ?? p.image;
   const coverAlt=p.cover ? (p.coverAlt ?? p.name) : (screenshot?.alt ?? p.imageAlt ?? p.name);
   return <div className="relative flex min-h-[220px] items-center justify-center overflow-hidden rounded-t-[1.5rem] border-b border-white/10" style={{background:"radial-gradient(ellipse at 65% 15%, "+p.color+"30, transparent 60%), #101e25"}}>
-    {cover?<img src={cover} alt={coverAlt} className="h-[260px] w-full object-contain p-4" loading="lazy" decoding="async" referrerPolicy="no-referrer"/>:
+    {cover?<img src={cover} alt={coverAlt} className={"w-full object-contain p-3 "+(p.cover?"h-[320px]":"h-[260px]")} loading="lazy" decoding="async" referrerPolicy="no-referrer"/>:
       <div className="flex flex-col items-center gap-4 px-5 py-10 text-center" style={{color:p.color}}><div className="rounded-3xl border border-current p-5">{p.status==="Published"?<Smartphone size={44}/>:<FlaskConical size={44}/>}</div><span className="text-2xl font-bold tracking-tight">{p.name}</span><span className="text-xs uppercase tracking-widest">{p.category}</span></div>}
   </div>
 }
