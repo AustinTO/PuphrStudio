@@ -1,8 +1,9 @@
+export type ProductMedia = { src: string; title: string; alt: string; kind: "screenshot" | "artwork" };
 export type Product = {
   slug: string; name: string; category: string; status: "Published" | "Prelaunch" | "In development";
   color: string; tagline: string; description: string; capabilities: string[]; technology: string[];
   website?: string; demo?: string; demoLabel?: string; play?: string; support?: string;
-  image?: string; imageAlt?: string; business: string; note?: string;
+  image?: string; imageAlt?: string; gallery?: ProductMedia[]; business: string; note?: string;
 };
 export const products: Product[] = [
   {slug:"curveset",name:"CurveSet",category:"Construction technology",status:"Published",color:"#a5bf85",
@@ -13,6 +14,56 @@ export const products: Product[] = [
     website:"https://curveset.app/",demo:"https://curveset.app/#calculator",demoLabel:"Try the free estimator",
     play:"https://play.google.com/store/apps/details?id=com.puphr.CurveSet&referrer=utm_source%3Dpuphr_studio%26utm_medium%3Dportfolio",support:"https://curveset.app/support/",
     image:"https://curveset.app/assets/screenshots/app-3d-cutaway.webp",imageAlt:"CurveSet textured retaining wall construction cutaway",
+    gallery: [
+      {
+        "src": "https://curveset.app/assets/screenshots/app-3d-cutaway.webp",
+        "title": "Construction cutaway",
+        "alt": "Textured 3D cutaway showing trench, base stone, drain stone and wall drain route",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://curveset.app/assets/screenshots/app-s-wall-3d.webp",
+        "title": "S-shaped wall in 3D",
+        "alt": "Cherry Hill S Wall with textured Keystone Compac III masonry blocks",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://curveset.app/assets/screenshots/app-wall-shapes.webp",
+        "title": "Six wall shapes",
+        "alt": "Straight, inside and outside curves, L, U and S wall layouts",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://curveset.app/assets/screenshots/app-course-inspection.webp",
+        "title": "Course inspection",
+        "alt": "Course four inspection with translucent upper courses and radius readout",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://curveset.app/assets/screenshots/app-cross-section.webp",
+        "title": "Interactive cross-section",
+        "alt": "Station cross-section with wall height, drain zone, stone base and collector pipe",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://curveset.app/assets/screenshots/app-takeoff-costing.webp",
+        "title": "Material takeoff and costing",
+        "alt": "Material quantities, pricing completeness and job cost breakdown",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://curveset.app/assets/screenshots/app-pro-pdf.webp",
+        "title": "Printable field worksheets",
+        "alt": "Pro project worksheet PDF export settings",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://curveset.app/assets/screenshots/app-installation-guide.webp",
+        "title": "Installation guide",
+        "alt": "Numbered block plan and calculated cut station measurements",
+        "kind": "screenshot"
+      }
+    ],
     business:"A useful free calculator attracts qualified search traffic and introduces the more capable mobile planning workspace. A one-time Pro upgrade unlocks advanced workflows.",
     note:"Planning and estimation software, not structural engineering certification."},
   {slug:"inkpad-reset",name:"Waste Ink Pad Counter Reset",category:"Hardware utility",status:"Published",color:"#65d4d6",
@@ -23,6 +74,50 @@ export const products: Product[] = [
     website:"https://inkpadreset.app.puphr.com/",demo:"https://inkpadreset.app.puphr.com/printers",demoLabel:"Explore supported printers",
     image:"https://inkpadreset.app.puphr.com/app-icon.png",imageAlt:"Waste Ink Pad Counter Reset app icon",
     play:"https://play.google.com/store/apps/details?id=com.puphr.printerpadreset&referrer=utm_source%3Dpuphr_studio%26utm_medium%3Dportfolio",
+    gallery: [
+      {
+        "src": "https://play-lh.googleusercontent.com/NdEMFclsLTKmTXo68SgZ4DZ1HDpTUIU5A4xn1CkTyoJb0hX8A0svp93EbnmoGfDwTmdICiB0Q9u75ghrADO1=w526-h296-rw",
+        "title": "App preview 1",
+        "alt": "Official Waste Ink Pad Counter Reset Google Play screenshot 1",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/c5bLtJPwR0JoRecIfcPkB4G9AZWs18JU0f0YApr6yceolCiyXCJRZ3u5anwbZ7uHkXjgD_QAqBe_T5eBedhPfQ=w526-h296-rw",
+        "title": "App preview 2",
+        "alt": "Official Waste Ink Pad Counter Reset Google Play screenshot 2",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/jX557XqJPZWmgVzYjsryce2B7ryb221AhBsTCGcdBc72IQiECCX3Ck4U4bLlWOcnT7AZRpAgkvVx2Y3x33nF=w526-h296-rw",
+        "title": "App preview 3",
+        "alt": "Official Waste Ink Pad Counter Reset Google Play screenshot 3",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/4FCogvKoQiEwvD_0AkLryos7tIdaAiW9paaICW8OTlrTuOefMbio7ltHCRO--9OWBnHsbbvpUutO5wqWbmDxAA=w526-h296-rw",
+        "title": "App preview 4",
+        "alt": "Official Waste Ink Pad Counter Reset Google Play screenshot 4",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/Ku_afGbgmo-869n0iYp1_D56_2QRg1DtYK2VkPLm1imI0258dB_9PgiiTMR7g116SQ0FqOcyCnPqd39aNC-dpLA=w526-h296-rw",
+        "title": "App preview 5",
+        "alt": "Official Waste Ink Pad Counter Reset Google Play screenshot 5",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/ubf5uDegTNP5EsJyfh9RoLjExHannVNpE3d2snTeaV881In1g4t7P0bjQWmbqXAtRvHGBmyOpXiMv8fT_IkyqCw=w526-h296-rw",
+        "title": "App preview 6",
+        "alt": "Official Waste Ink Pad Counter Reset Google Play screenshot 6",
+        "kind": "screenshot"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/oGX2skX5zTwuL-NqsvW5kqYaDHOVRtRbSH0-H9kYd2SK_m0bvtG-M-DXjxH3EulMA058wAJs3yfo4Ig-bGnDSw=w526-h296-rw",
+        "title": "App preview 7",
+        "alt": "Official Waste Ink Pad Counter Reset Google Play screenshot 7",
+        "kind": "screenshot"
+      }
+    ],
     business:"Model-specific search content connects users who have an immediate problem to the appropriate utility. Credit-based purchases align payment with a reset.",
     note:"A counter reset does not replace inspection or servicing of saturated waste ink pads."},
   {slug:"usmos",name:"Usmos",category:"Relationship enrichment",status:"Prelaunch",color:"#c8a2e8",
@@ -32,6 +127,50 @@ export const products: Product[] = [
     technology:["Flutter","Cloudflare Workers","D1","RevenueCat","Rive"],
     website:"https://usmos.app/",demo:"https://usmos.app/#spark",demoLabel:"Try a Daily Spark",
     image:"https://usmos.app/assets/theme_inner_world.webp",imageAlt:"Usmos illustrated inner world theme",
+    gallery: [
+      {
+        "src": "https://usmos.app/assets/theme_inner_world.webp",
+        "title": "Inner worlds",
+        "alt": "Usmos companion website artwork: Inner worlds",
+        "kind": "artwork"
+      },
+      {
+        "src": "https://usmos.app/assets/theme_playfulness.webp",
+        "title": "Playfulness",
+        "alt": "Usmos companion website artwork: Playfulness",
+        "kind": "artwork"
+      },
+      {
+        "src": "https://usmos.app/assets/theme_adventure.webp",
+        "title": "Adventure",
+        "alt": "Usmos companion website artwork: Adventure",
+        "kind": "artwork"
+      },
+      {
+        "src": "https://usmos.app/assets/theme_trust.webp",
+        "title": "Trust",
+        "alt": "Usmos companion website artwork: Trust",
+        "kind": "artwork"
+      },
+      {
+        "src": "https://usmos.app/assets/orbit_playful.webp",
+        "title": "Catch a spark",
+        "alt": "Usmos companion website artwork: Catch a spark",
+        "kind": "artwork"
+      },
+      {
+        "src": "https://usmos.app/assets/orbit_warm.webp",
+        "title": "Discover together",
+        "alt": "Usmos companion website artwork: Discover together",
+        "kind": "artwork"
+      },
+      {
+        "src": "https://usmos.app/assets/orbit_gentle.webp",
+        "title": "Keep what matters",
+        "alt": "Usmos companion website artwork: Keep what matters",
+        "kind": "artwork"
+      }
+    ],
     business:"A distinct editorial site and free public preview introduce the experience before launch; the planned subscription is designed to cover both partners.",
     note:"In active development. Security review, store approval and production availability are not yet confirmed."},
   {slug:"suretick",name:"SureTick",category:"Applied AI",status:"In development",color:"#79e3bc",
@@ -45,6 +184,15 @@ export const products: Product[] = [
     description:"A local-first camera and control companion exploring interoperable consumer drone protocols.",
     capabilities:["Live camera feeds","Explicit hardware protocol profiles","Gamepad and co-pilot interfaces","Local network communication"],
     technology:["Flutter","Local networking","Video streaming","RevenueCat"],
+    image:"/media/products/anydrone-cockpit.png",imageAlt:"AnyDrone cockpit development preview",
+    gallery: [
+      {
+        "src": "/media/products/anydrone-cockpit.png",
+        "title": "Cockpit development preview",
+        "alt": "AnyDrone cockpit screenshot from the project repository",
+        "kind": "screenshot"
+      }
+    ],
     business:"A hardware compatibility-first approach to a fragmented consumer drone ecosystem.",
     note:"Compatibility varies by model and protocol; physical flight testing and release verification are ongoing."},
   {slug:"hairfuture",name:"HairFuture",category:"Beauty technology",status:"In development",color:"#efb5a4",
