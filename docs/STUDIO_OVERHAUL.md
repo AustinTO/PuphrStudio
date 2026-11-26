@@ -15,7 +15,7 @@ The static build uses the existing Vite/React toolchain, then renders all known 
 
 ## Public portfolio
 
-Edit `client/src/products.ts` for project information and availability; the directory, homepage and routes derive from this registry. Unpublished products have no store links. Update status and URLs only after release verification. CurveSet uses all eight actual screenshots from its companion site; InkPad Reset uses seven official Google Play screenshots; Usmos uses explicitly labeled companion-site artwork until captured app screenshots are available. AnyDrone uses its repository's cockpit screenshot, copied into Studio's public assets. SureTick, HairFuture and CrossScan Moto retain labeled previews until approved screenshots are available. Remote images are lazy-loaded, fit without cropping, and their specific origins are permitted by CSP. Product galleries link to the original available image.
+Edit `client/src/products.ts` for project information and availability; the directory, homepage and routes derive from this registry. Unpublished products have no store links. Update status and URLs only after release verification. CurveSet uses the eight current promotional screenshots from its Google Play listing in listing order; InkPad Reset uses seven official Google Play screenshots; Usmos uses explicitly labeled companion-site artwork until captured app screenshots are available. AnyDrone uses its repository's cockpit screenshot, copied into Studio's public assets. SureTick, HairFuture and CrossScan Moto retain labeled previews until approved screenshots are available. Remote images are lazy-loaded, fit without cropping, and their specific origins are permitted by CSP. Product galleries link to the original available image.
 
 ## Before merging
 
