@@ -1,3 +1,4 @@
+import { StudioNav, StudioFooter } from "./Portfolio";
 import { useEffect } from "react";
 import {
   ArrowRight,
@@ -199,31 +200,26 @@ export const services: Service[] = [
     ],
     process: ["Review the current setup", "Stabilize and document", "Monitor and maintain", "Improve as the business evolves"],
   },
+  {
+    slug:"product-launch-growth",
+    name:"Product Launch & Growth Systems",
+    eyebrow:"From problem to product",
+    summary:"Custom mobile and web software, product validation, monetization and search-driven acquisition systems shaped around a real market.",
+    promise:"A focused, useful product with a maintainable technical foundation and a credible path to customers.",
+    icon:Workflow,
+    outcomes:["Market-informed product scope","Responsive web or mobile experience","Dependable backend and integrations","Store-ready launch planning","Useful companion website and search content","Measurement and ongoing improvement"],
+    capabilities:[
+      {title:"Product strategy & prototyping",body:"Define the user problem, test the experience, and choose a scope that earns its complexity."},
+      {title:"Software development",body:"Build mobile and web tools, integrations, secure APIs and practical workflows."},
+      {title:"Commercial launch",body:"Plan store distribution, purchase flows, companion websites and clear onboarding."},
+      {title:"Growth infrastructure",body:"Build useful search-led content, localized funnels and privacy-conscious attribution."}
+    ],
+    fit:["You have a specific underserved problem.","You need a useful tool rather than a generic site.","You want a measured path from launch to growth.","You need a technical partner who understands product operations."],
+    process:["Define and validate","Design and prototype","Build and test","Launch and improve"],
+  },
 ];
 
-function StudioHeader() {
-  return (
-    <header className="relative z-20 px-4 pt-5 sm:px-6 lg:px-8">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 rounded-full border border-white/10 bg-background/80 px-4 py-3 backdrop-blur-md sm:px-5">
-        <a href="/" className="flex items-center gap-3 font-bold text-foreground">
-          <img src="/puphr_logo.svg" alt="" className="h-8 w-8" />
-          <span>Puphr Studio</span>
-        </a>
-        <nav aria-label="Primary navigation" className="flex items-center gap-2 sm:gap-4">
-          <a href="/services" className="text-sm font-semibold text-foreground/78 transition hover:text-primary">
-            Services
-          </a>
-          <a
-            href="/#contact"
-            className="inline-flex min-h-10 items-center rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground transition hover:brightness-105"
-          >
-            Start a project
-          </a>
-        </nav>
-      </div>
-    </header>
-  );
-}
+function StudioHeader() { return <StudioNav path="/services" />; }
 
 function ServiceCard({ service }: { service: Service }) {
   const Icon = service.icon;
@@ -247,20 +243,7 @@ function ServiceCard({ service }: { service: Service }) {
   );
 }
 
-function ServicesFooter() {
-  return (
-    <footer className="relative z-10 border-t border-white/10 px-4 py-8 text-sm text-foreground/65 sm:px-6 lg:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <span>© {new Date().getFullYear()} Puphr Studio. Upstate SC and beyond.</span>
-        <div className="flex gap-5">
-          <a href="mailto:contact@puphr.com" className="transition hover:text-primary">contact@puphr.com</a>
-          <a href="tel:+18645392435" className="transition hover:text-primary">(864) 539-2435</a>
-          <a href="https://puphr.com" className="transition hover:text-primary">Puphr</a>
-        </div>
-      </div>
-    </footer>
-  );
-}
+function ServicesFooter() { return <StudioFooter />; }
 
 export function ServicesIndexPage() {
   useEffect(() => {

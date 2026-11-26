@@ -1,3 +1,5 @@
+import { StudioNav, StudioFooter, ProductSection, ProductDirectory, ProductDetail, TechnologyPage, InsightsPage, AboutPage, ClientWorkPage, ClientDetailPage, NotFoundPage } from "./Portfolio";
+import { products, productPath, productRoutes } from "./products";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import ParallaxBackground from "@/components/ParallaxBackground";
 import { Toaster } from "@/components/ui/toaster";
@@ -63,6 +65,8 @@ const needOptions = [
   "I need branding help",
   "My forms/email/hosting are messy",
   "I need ecommerce or content publishing",
+  "I need a mobile app or custom software",
+  "I need product launch, growth or automation help",
 ];
 
 const defaultContactForm: ContactFormState = {
@@ -79,6 +83,7 @@ const serviceCards = [
   { title: "Modern Ecommerce", href: "/services/modern-ecommerce" },
   { title: "Growth & Integrations", href: "/services/growth-integrations" },
   { title: "Puphr Care+", href: "/services/care-plus" },
+  { title: "Product Launch & Growth", href: "/services/product-launch-growth" },
 ];
 
 const improvementCards = [
@@ -613,30 +618,18 @@ function HomePage() {
     <div className="relative min-h-screen">
       <ParallaxBackground />
       <Toaster />
-
+      <StudioNav />
       <main className="relative z-10 px-4 pb-28 pt-8 sm:px-6 sm:pb-16 lg:px-8">
         <section ref={heroRef} className="mx-auto max-w-7xl pt-8">
           <div className="grid min-h-[680px] gap-12 rounded-[2rem] border border-white/10 bg-background/72 p-6 backdrop-blur-md sm:p-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center lg:p-14">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/90">Puphr Studio</p>
-              <h1 className="mt-4 max-w-5xl text-[2.15rem] font-bold leading-[1.05] text-foreground min-[380px]:text-[2.25rem] min-[420px]:text-4xl sm:text-6xl lg:text-7xl">
-                <span className="block">
-                  A <span className="decoration-accent decoration-[0.06em] underline underline-offset-[0.13em]">sharper</span> site.
-                </span>
-                <span className="block">
-                  A <span className="decoration-accent decoration-[0.06em] underline underline-offset-[0.13em]">cleaner</span> brand.
-                </span>
-                <span className="block">
-                  A <span className="decoration-accent decoration-[0.06em] underline underline-offset-[0.13em]">better</span> reason to{" "}
-                  <span className="text-accent">trust you.</span>
-                </span>
-              </h1>
+              <h1 className="mt-4 max-w-5xl text-4xl font-bold leading-tight sm:text-6xl lg:text-7xl">Distinctive digital experiences. <span className="text-accent">Built from the ground up.</span></h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-foreground/84 sm:text-xl">
-                Puphr Studio designs modern websites and digital systems for businesses that need to look more credible,
-                work more efficiently, and grow without unnecessary technical complexity.
+                We design modern websites, mobile applications and intelligent software systems. Independent products and client builds, shaped around real problems and engineered to grow.
               </p>
               <p className="mt-6 max-w-3xl rounded-2xl border border-white/10 bg-white/5 p-4 text-base font-semibold leading-7 text-foreground/82">
-                Design polish from a creative studio. Technical discipline from an IT and cybersecurity company.
+                Design polish from a creative studio. Technical discipline from an IT and cybersecurity company. Real products, from first idea to launch.
               </p>
 
               <div className="mx-auto mt-6 flex max-w-[220px] justify-center lg:hidden">
@@ -656,10 +649,10 @@ function HomePage() {
                   Start a Project
                 </a>
                 <a
-                  href="#featured-work"
+                  href="/products"
                   className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-3 text-base font-semibold text-foreground transition hover:border-white/25 hover:bg-white/10"
                 >
-                  See the Work
+                  Explore Our Products
                 </a>
                 <a
                   href="tel:+18645392435"
@@ -670,7 +663,7 @@ function HomePage() {
               </div>
 
               <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-foreground/62">
-                Modern Websites · Ecommerce · Growth & Integrations · Care+
+                Websites · Ecommerce · Mobile apps · Product growth · Care+
               </p>
             </div>
 
@@ -703,10 +696,17 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto mt-8 max-w-7xl">
-          <div className="rounded-[1.5rem] border border-white/10 bg-card/58 p-5 text-base font-semibold leading-7 text-foreground/80 backdrop-blur-sm sm:p-6 sm:text-lg">
-            Start with the website your business needs today. Add ecommerce, booking, automation, AI, custom databases,
-            or other integrations only when they create real value.
+        <section aria-labelledby="studio-philosophy-title" className="mx-auto mt-8 max-w-7xl">
+          <div className="grid gap-5 rounded-[1.5rem] border border-white/10 bg-card/58 p-5 backdrop-blur-sm sm:p-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-10">
+            <div className="border-l-2 border-primary pl-4 sm:pl-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">A note from the founder</p>
+              <h2 id="studio-philosophy-title" className="mt-2 text-2xl font-bold leading-tight text-foreground sm:text-3xl">Engineering with intent.</h2>
+              <p className="mt-2 text-sm font-medium leading-6 text-foreground/75">Curiosity drives innovation. Consideration drives quality.</p>
+            </div>
+            <div>
+              <p className="text-base leading-7 text-foreground/80">I use AI to explore possibilities and challenge assumptions, while taking responsibility for understanding the code and owning the decisions behind it. I approach emerging technology and infrastructure with the same care: every dependency should earn its place.</p>
+              <a href="/about#philosophy" className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-primary hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">Read my philosophy <span aria-hidden="true">→</span></a>
+            </div>
           </div>
         </section>
 
@@ -724,6 +724,7 @@ function HomePage() {
           </div>
         </section>
 
+        <ProductSection />
         <section className="mx-auto mt-20 max-w-7xl">
           <SectionHeading
             eyebrow="What Puphr Studio Does"
@@ -737,6 +738,14 @@ function HomePage() {
           </div>
         </section>
 
+        <section className="mx-auto mt-16 max-w-7xl rounded-[1.5rem] border border-primary/20 bg-card/80 p-6 sm:p-8">
+            <SectionHeading eyebrow="Product engineering" title="From first idea to a product that grows." body="Our own apps combine product design, software engineering, search-led growth and secure infrastructure. From custom Rive experiences and geometry engines to native real-time video transport, we build the underlying technology when the product demands it."/>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <a href="/technology" className="rounded-full border border-primary/40 px-5 py-3 font-semibold text-primary">Explore our technology</a>
+              <a href="/labs/bleachers" className="rounded-full border border-primary/40 px-5 py-3 font-semibold text-primary">Bleachers · Media over QUIC</a>
+              <a href="/services/product-launch-growth" className="rounded-full bg-primary px-5 py-3 font-semibold text-primary-foreground">Product Launch & Growth</a>
+            </div>
+        </section>
         <section id="beyond-wordpress" className="mx-auto mt-20 max-w-7xl scroll-mt-8">
           <div className="rounded-[2rem] border border-primary/20 bg-primary/10 p-6 backdrop-blur-md sm:p-8 lg:p-10">
             <SectionHeading
@@ -810,6 +819,7 @@ function HomePage() {
           </div>
         </section>
 
+        <ProductSection labs />
         <section className="mx-auto mt-20 max-w-7xl">
           <SectionHeading
             eyebrow="Process"
@@ -859,12 +869,10 @@ function HomePage() {
                   Tell us what feels broken. We will help sort the next move.
                 </h2>
                 <p className="mt-5 max-w-3xl text-lg leading-8 text-foreground/78">
-                  If referrals love you but strangers bounce, your online presence is leaking trust. Puphr Studio rebuilds
-                  the parts that matter: brand, copy, site structure, mobile experience, contact flow, and the technical
-                  foundation behind it.
+                  Tell us what you want to build, improve or launch. We help with brand, websites, mobile software, growth systems and the technical foundations behind them.
                 </p>
                 <p className="mt-5 text-2xl font-bold leading-tight text-foreground">
-                  If your business is better than your current site, fix that.
+                  Build the next useful version of your business.
                 </p>
               </div>
 
@@ -992,38 +1000,7 @@ function HomePage() {
         </section>
       </main>
 
-      <footer className="relative z-10 border-t border-white/10 px-4 py-10 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 text-sm text-foreground/70 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
-          <div>
-            <h2 className="text-2xl font-bold text-foreground">Puphr Studio</h2>
-            <p className="mt-3 max-w-xl text-base leading-7">
-              Built by Puphr Studio, the creative web and brand arm of Puphr. Premium design, secure technical
-              foundations, and practical digital systems for growing businesses.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold uppercase tracking-[0.18em] text-foreground/80">Services</h3>
-            <div className="mt-3 grid gap-2">
-              <a href="/services/modern-websites" className="transition hover:text-primary">Modern Websites</a>
-              <a href="/services/modern-ecommerce" className="transition hover:text-primary">Modern Ecommerce</a>
-              <a href="/services/growth-integrations" className="transition hover:text-primary">Growth & Integrations</a>
-              <a href="/services/care-plus" className="transition hover:text-primary">Puphr Care+</a>
-            </div>
-          </div>
-          <div>
-            <h3 className="font-semibold uppercase tracking-[0.18em] text-foreground/80">Contact</h3>
-            <div className="mt-3 grid gap-2">
-              <a href="mailto:contact@puphr.com" className="transition hover:text-primary">contact@puphr.com</a>
-              <a href="tel:+18645392435" className="transition hover:text-primary">(864) 539-2435</a>
-              <span>Upstate SC and beyond</span>
-              <a href="https://puphr.com" target="_blank" rel="noreferrer" className="transition hover:text-primary">
-                Main Puphr site
-              </a>
-              <span>Security-minded build process</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <StudioFooter />
 
       <div
         className={`fixed bottom-4 right-4 z-40 transition duration-300 ${
@@ -1047,19 +1024,38 @@ function HomePage() {
   );
 }
 
-function App() {
-  const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
-  const selectedService = services.find((service) => normalizedPath === `/services/${service.slug}`);
-
-  if (normalizedPath === "/services") {
-    return <ServicesIndexPage />;
-  }
-
-  if (selectedService) {
-    return <ServiceDetailPage service={selectedService} />;
-  }
-
-  return <HomePage />;
+const clientSlugs = ["the-right-repair","popdoc-supplements","michael-rashkin","ufo-racing","think-clean","comfort-inn-clemson"];
+const clientWork = [...featuredProjects, ...selectedProjects].map((project,i)=>({project,slug:clientSlugs[i]}));
+export const routes = [
+  {path:"/",title:"Puphr Studio | Websites, Apps & Digital Products",description:"Puphr Studio builds distinctive websites, mobile apps and secure digital products for businesses and independent markets."},
+  {path:"/services",title:"Services | Puphr Studio",description:"Websites, ecommerce, integrations, product launch and ongoing technical care."},
+  ...services.map(s=>({path:"/services/"+s.slug,title:s.name+" | Puphr Studio",description:s.summary})),
+  {path:"/work",title:"Client Work | Puphr Studio",description:"Explore website, branding and digital system case studies by Puphr Studio."},
+  ...clientWork.map(({project,slug})=>({path:"/work/"+slug,title:project.name+" | Puphr Studio",description:project.outcome})),
+  {path:"/products",title:"Original Products | Puphr Studio",description:"Explore CurveSet, Waste Ink Pad Counter Reset, Usmos and other independent products by Puphr LLC."},
+  {path:"/labs",title:"Puphr Labs | Puphr Studio",description:"Explore active development projects in AI, hardware interoperability and personalized software."},
+  ...productRoutes,
+  {path:"/technology",title:"Engineering & Growth | Puphr Studio",description:"Mobile software, applied AI, hardware integration and search-driven growth systems."},
+  {path:"/insights",title:"Insights | Puphr Studio",description:"Product stories and practical guides from the Puphr ecosystem."},
+  {path:"/about",title:"About | Puphr Studio",description:"Creative direction and technical discipline by Puphr LLC."},
+  {path:"/contact",title:"Contact | Puphr Studio",description:"Start a project with Puphr Studio."},
+];
+function App({path}:{path?:string} = {}) {
+  const normalizedPath = (path ?? (typeof window !== "undefined" ? window.location.pathname : "/")).replace(new RegExp("/+$"), "") || "/";
+  const selectedService = services.find(service => normalizedPath === "/services/"+service.slug);
+  if(normalizedPath==="/services")return <ServicesIndexPage/>;
+  if(selectedService)return <ServiceDetailPage service={selectedService}/>;
+  if(normalizedPath==="/products")return <ProductDirectory/>;
+  if(normalizedPath==="/labs")return <ProductDirectory labs/>;
+  const product=products.find(p=>normalizedPath===productPath(p));
+  if(product)return <ProductDetail p={product}/>;
+  if(normalizedPath==="/technology")return <TechnologyPage/>;
+  if(normalizedPath==="/insights")return <InsightsPage/>;
+  if(normalizedPath==="/about")return <AboutPage/>;
+  if(normalizedPath==="/work")return <ClientWorkPage>{clientWork.map(({project,slug})=><div key={slug}><ProjectCard project={project}/><a className="mt-3 inline-block font-semibold text-primary" href={"/work/"+slug}>Read case study →</a></div>)}</ClientWorkPage>;
+  const client=clientWork.find(x=>normalizedPath==="/work/"+x.slug);
+  if(client)return <ClientDetailPage title={client.project.name} description={client.project.outcome}>{client.project.caseTitle?<CaseStudyCard project={client.project}/>:<ProjectCard project={client.project}/>}</ClientDetailPage>;
+  if(normalizedPath==="/"||normalizedPath==="/contact")return <HomePage/>;
+  return <NotFoundPage/>;
 }
-
 export default App;

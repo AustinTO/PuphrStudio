@@ -13,14 +13,19 @@
   force = true
 
 [[redirects]]
+  from = "/contact"
+  to = "/#contact"
+  status = 301
+
+[[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404
 
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; base-uri 'self'; font-src 'self' https://fonts.gstatic.com; frame-ancestors 'none'; frame-src 'self' https://customer-blertdcu1j6vaebg.cloudflarestream.com; img-src 'self' data: blob:; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; connect-src 'self' https://customer-blertdcu1j6vaebg.cloudflarestream.com; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; font-src 'self' https://fonts.gstatic.com; frame-ancestors 'none'; frame-src 'self' https://customer-blertdcu1j6vaebg.cloudflarestream.com; img-src 'self' data: blob: https://curveset.app https://usmos.app https://inkpadreset.app.puphr.com https://play-lh.googleusercontent.com; object-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; connect-src 'self' https://customer-blertdcu1j6vaebg.cloudflarestream.com; upgrade-insecure-requests"
     Permissions-Policy = "camera=(), geolocation=(), microphone=(), payment=(), usb=()"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
