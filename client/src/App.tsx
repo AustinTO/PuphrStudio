@@ -696,9 +696,17 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto mt-8 max-w-7xl">
-          <div className="rounded-[1.5rem] border border-white/10 bg-card/58 p-5 text-base font-semibold leading-7 text-foreground/80 backdrop-blur-sm sm:p-6 sm:text-lg">
-            Start with the system your business needs today. Add mobile experiences, ecommerce, booking, automation, AI, custom databases or other integrations only when they create real value.
+        <section aria-labelledby="studio-philosophy-title" className="mx-auto mt-8 max-w-7xl">
+          <div className="grid gap-5 rounded-[1.5rem] border border-white/10 bg-card/58 p-5 backdrop-blur-sm sm:p-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-10">
+            <div className="border-l-2 border-primary pl-4 sm:pl-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">A note from the founder</p>
+              <h2 id="studio-philosophy-title" className="mt-2 text-2xl font-bold leading-tight text-foreground sm:text-3xl">Engineering with intent.</h2>
+              <p className="mt-2 text-sm font-medium leading-6 text-foreground/75">Curiosity drives innovation. Consideration drives quality.</p>
+            </div>
+            <div>
+              <p className="text-base leading-7 text-foreground/80">I explore emerging technology, use AI to expand what is possible, and choose infrastructure with care. Every dependency should earn its place. The goal is not more technology, but better technology for the problem at hand.</p>
+              <a href="/about#philosophy" className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-primary hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">Read my philosophy <span aria-hidden="true">→</span></a>
+            </div>
           </div>
         </section>
 
