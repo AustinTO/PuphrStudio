@@ -1026,7 +1026,7 @@ export const routes = [
   {path:"/contact",title:"Contact | Puphr Studio",description:"Start a project with Puphr Studio."},
 ];
 function App({path}:{path?:string} = {}) {
-  const normalizedPath = (path ?? (typeof window !== "undefined" ? window.location.pathname : "/")).replace(/\\/+$/, "") || "/";
+  const normalizedPath = (path ?? (typeof window !== "undefined" ? window.location.pathname : "/")).replace(new RegExp("/+$"), "") || "/";
   const selectedService = services.find(service => normalizedPath === "/services/"+service.slug);
   if(normalizedPath==="/services")return <ServicesIndexPage/>;
   if(selectedService)return <ServiceDetailPage service={selectedService}/>;
