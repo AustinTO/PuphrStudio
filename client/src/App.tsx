@@ -704,7 +704,7 @@ function HomePage() {
               <p className="mt-2 text-sm font-medium leading-6 text-foreground/75">Curiosity drives innovation. Consideration drives quality.</p>
             </div>
             <div>
-              <p className="text-base leading-7 text-foreground/80">I explore emerging technology, use AI to expand what is possible, and choose infrastructure with care. Every dependency should earn its place. The goal is not more technology, but better technology for the problem at hand.</p>
+              <p className="text-base leading-7 text-foreground/80">I use AI to explore possibilities and challenge assumptions, while taking responsibility for understanding the code and owning the decisions behind it. I approach emerging technology and infrastructure with the same care: every dependency should earn its place.</p>
               <a href="/about#philosophy" className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-primary hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">Read my philosophy <span aria-hidden="true">→</span></a>
             </div>
           </div>
