@@ -161,7 +161,44 @@ export function InsightsPage(){
   return <Shell path="/insights"><Heading eyebrow="Studio insights" title="Learn from the things we build." body="A collection of practical product stories, engineering approaches and resources from across our independent projects."/><div className="mt-8 grid gap-5 md:grid-cols-3">{featuredProducts.map(p=><ProductCard key={p.slug} p={p}/>)}</div><section className={panel+" mt-8"}><h2 className="text-2xl font-bold">Product publications</h2><div className="mt-4 flex flex-wrap gap-3"><a className={button} href="https://curveset.app/guides/">CurveSet field guides</a><a className={button} href="https://usmos.app/insights/">Usmos insights</a><a className={button} href="https://inkpadreset.app.puphr.com/">Printer troubleshooting</a></div></section></Shell>
 }
 export function AboutPage(){
-  return <Shell path="/about"><Heading eyebrow="About Puphr Studio" title="Creative direction. Technical discipline." body="Puphr Studio is the creative and product development arm of Puphr LLC, based in Upstate South Carolina and working beyond. We make independent software and build practical digital systems for businesses."/><section className={panel+" mt-8"}><h2 className="text-2xl font-bold">Right-sized by design</h2><p className="mt-4 leading-8 text-foreground/80">A useful product starts with a real problem. We combine thoughtful design, reliable engineering and maintainable technology, then improve from what we learn after launch.</p><div className="mt-5 flex flex-wrap gap-3"><a href="/work" className={button}>Client work</a><a href="/products" className={button}>Our products</a><a href="/#contact" className={primary}>Start a project</a></div></section></Shell>
+  return <Shell path="/about">
+    <Heading eyebrow="About Puphr Studio" title="Creative direction. Technical discipline." body="Puphr Studio is the creative and product development arm of Puphr LLC, based in Upstate South Carolina and working beyond. We make independent software and build practical digital systems for businesses."/>
+    <section id="philosophy" aria-labelledby="philosophy-title" className="mt-8 scroll-mt-24 rounded-[1.5rem] border border-primary/20 bg-card/85 p-6 sm:p-8 lg:p-10">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[.28em] text-primary">My philosophy</p>
+          <h2 id="philosophy-title" className="mt-3 text-3xl font-bold leading-tight sm:text-5xl">Engineering with intent.</h2>
+          <p className="mt-4 text-lg font-semibold leading-7 text-foreground/80">Curiosity drives innovation. Consideration drives quality.</p>
+          <p className="mt-5 max-w-lg leading-7 text-foreground/75">I believe the best digital experiences emerge from asking better questions, not simply choosing familiar tools. Every project is an opportunity to reconsider what is possible and what is actually worth building.</p>
+          <blockquote className="mt-8 border-l-2 border-primary pl-5">
+            <p className="text-xl font-semibold leading-8 text-foreground sm:text-2xl">AI expands what I can accomplish. It does not absolve me of responsibility for what I build.</p>
+            <footer className="mt-4 text-sm text-foreground/70">Austin O'Dell · Founder, Puphr Studio</footer>
+          </blockquote>
+        </div>
+        <div className="divide-y divide-white/10">
+          <article className="pb-6">
+            <p className="text-xs font-bold tracking-[.18em] text-primary">01 / JUDGMENT</p>
+            <h3 className="mt-2 text-xl font-bold">AI as an instrument, not an authority.</h3>
+            <p className="mt-3 leading-7 text-foreground/80">I use AI to investigate alternatives, challenge assumptions, accelerate implementation and uncover problems. Generating code is not the same as engineering a reliable system. Reading and understanding the code, questioning dependencies, testing behavior and owning the decisions remain essential.</p>
+          </article>
+          <article className="py-6">
+            <p className="text-xs font-bold tracking-[.18em] text-primary">02 / FOUNDATIONS</p>
+            <h3 className="mt-2 text-xl font-bold">Infrastructure is part of the experience.</h3>
+            <p className="mt-3 leading-7 text-foreground/80">I weigh security, privacy, performance, maintainability, operating costs and room for growth before selecting an architecture. Edge computing, serverless services, static sites and custom applications each have a place. I choose the foundation around the problem, not the problem around a predetermined stack.</p>
+          </article>
+          <article className="pt-6">
+            <p className="text-xs font-bold tracking-[.18em] text-primary">03 / EXPLORATION</p>
+            <h3 className="mt-2 text-xl font-bold">Technology should earn its place.</h3>
+            <p className="mt-3 leading-7 text-foreground/80">I actively explore emerging technologies and experiment with new approaches. But adopting something merely because it is new is no more sensible than retaining it because it is familiar. I favor evidence, portability and practical value over novelty or unnecessary complexity.</p>
+          </article>
+        </div>
+      </div>
+      <div className="mt-8 border-t border-white/10 pt-6">
+        <p className="max-w-3xl text-base leading-7 text-foreground/80"><strong className="text-foreground">Build for what comes next.</strong> My goal is to create distinctive, resilient digital experiences that are not unnecessarily constrained by fragile dependencies or costly platforms. Sometimes the most sophisticated engineering decision is to make something simpler.</p>
+        <div className="mt-5 flex flex-wrap gap-3"><a href="/technology" className={button}>Engineering in practice <ArrowRight size={16}/></a><a href="/work" className={button}>Client work</a><a href="/products" className={button}>Our products</a><a href="/#contact" className={primary}>Start a project</a></div>
+      </div>
+    </section>
+  </Shell>
 }
 export function NotFoundPage(){return <Shell path="/404"><Heading eyebrow="404" title="That page isn't here." body="Find the right project or return to the Studio homepage."/><a href="/" className={primary+" mt-6"}>Back to Studio</a></Shell>}
 export function ClientWorkPage({children}:{children:React.ReactNode}){return <Shell path="/work"><Heading eyebrow="Client work" title="Real builds. Real businesses." body="Distinctive branding, thoughtful digital experiences and dependable technical foundations across industries."/><div className="mt-8 grid gap-6 md:grid-cols-2">{children}</div></Shell>}
