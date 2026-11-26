@@ -179,7 +179,7 @@ export function AboutPage(){
           <article className="pb-6">
             <p className="text-xs font-bold tracking-[.18em] text-primary">01 / JUDGMENT</p>
             <h3 className="mt-2 text-xl font-bold">AI as an instrument, not an authority.</h3>
-            <p className="mt-3 leading-7 text-foreground/80">I use AI to investigate alternatives, challenge assumptions, accelerate implementation and uncover problems. Generating code is not the same as engineering a reliable system. Reading and understanding the code, questioning dependencies, testing behavior and owning the decisions remain essential.</p>
+            <p className="mt-3 leading-7 text-foreground/80">I use AI to investigate alternatives, challenge assumptions and accelerate implementation, not to outsource judgment. I take responsibility for reading and understanding the code, evaluating its assumptions and dependencies, and testing its behavior. That means questioning, revising or rejecting generated solutions when they do not fit. I aim to understand not only what works, but why it works, and to own the technical decisions behind what I ship.</p>
           </article>
           <article className="py-6">
             <p className="text-xs font-bold tracking-[.18em] text-primary">02 / FOUNDATIONS</p>
