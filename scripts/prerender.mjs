@@ -5,8 +5,10 @@ const root="dist/public", origin="https://studio.puphr.com";
 const template=await readFile(join(root,"index.html"),"utf8");
 const esc=s=>String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
 const pages=routes.filter(r=>r.path!=="/contact");
+// Directory index pages are served with trailing slashes by Netlify.
+const publicPath=path=>path.replace(/\/+$/, "")+"/";
 function html(route,notFound=false) {
-  const canonical=origin+route.path;
+  const canonical=origin+publicPath(route.path);
   const meta='<meta name="description" content="'+esc(route.description)+'">\n'+
     '<meta property="og:title" content="'+esc(route.title)+'">\n'+
     '<meta property="og:description" content="'+esc(route.description)+'">\n'+
@@ -27,6 +29,6 @@ for(const route of pages){
   await writeFile(join(dir,"index.html"),html(route));
 }
 await writeFile(join(root,"404.html"),html({path:"/404",title:"Page not found | Puphr Studio",description:"Find your way back to Puphr Studio."},true));
-await writeFile(join(root,"sitemap.xml"),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+pages.map(r=>'<url><loc>'+esc(origin+r.path)+'</loc></url>').join("")+'</urlset>');
+await writeFile(join(root,"sitemap.xml"),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+pages.map(r=>'<url><loc>'+esc(origin+publicPath(r.path))+'</loc></url>').join("")+'</urlset>');
 await writeFile(join(root,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: "+origin+"/sitemap.xml\n");
 console.log("Pre-rendered "+pages.length+" pages and a 404 page");

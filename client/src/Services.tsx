@@ -226,7 +226,7 @@ function ServiceCard({ service }: { service: Service }) {
 
   return (
     <a
-      href={`/services/${service.slug}`}
+      href={`/services/${service.slug}/`}
       className="group flex h-full flex-col rounded-[1.5rem] border border-white/10 bg-card/68 p-6 backdrop-blur-sm transition hover:-translate-y-1 hover:border-primary/45"
     >
       <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/25 bg-primary/10 text-primary">
@@ -308,7 +308,7 @@ export function ServiceDetailPage({ service }: { service: Service }) {
         <section className="mx-auto max-w-7xl">
           <div className="grid gap-10 rounded-[2rem] border border-white/10 bg-background/76 p-6 backdrop-blur-md sm:p-10 lg:grid-cols-[1fr_0.65fr] lg:items-center lg:p-14">
             <div>
-              <a href="/services" className="text-sm font-semibold text-primary transition hover:text-primary/80">← All services</a>
+              <a href="/services/" className="text-sm font-semibold text-primary transition hover:text-primary/80">← All services</a>
               <p className="mt-7 text-xs font-semibold uppercase tracking-[0.3em] text-secondary">{service.eyebrow}</p>
               <h1 className="mt-3 text-4xl font-bold leading-tight text-foreground sm:text-6xl">{service.name}</h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-foreground/82 sm:text-xl">{service.summary}</p>

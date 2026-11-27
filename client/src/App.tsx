@@ -79,11 +79,11 @@ const defaultContactForm: ContactFormState = {
 };
 
 const serviceCards = [
-  { title: "Modern Websites", href: "/services/modern-websites" },
-  { title: "Modern Ecommerce", href: "/services/modern-ecommerce" },
-  { title: "Growth & Integrations", href: "/services/growth-integrations" },
-  { title: "Puphr Care+", href: "/services/care-plus" },
-  { title: "Product Launch & Growth", href: "/services/product-launch-growth" },
+  { title: "Modern Websites", href: "/services/modern-websites/" },
+  { title: "Modern Ecommerce", href: "/services/modern-ecommerce/" },
+  { title: "Growth & Integrations", href: "/services/growth-integrations/" },
+  { title: "Puphr Care+", href: "/services/care-plus/" },
+  { title: "Product Launch & Growth", href: "/services/product-launch-growth/" },
 ];
 
 const improvementCards = [
@@ -649,7 +649,7 @@ function HomePage() {
                   Start a Project
                 </a>
                 <a
-                  href="/products"
+                  href="/products/"
                   className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-3 text-base font-semibold text-foreground transition hover:border-white/25 hover:bg-white/10"
                 >
                   Explore Our Products
@@ -705,7 +705,7 @@ function HomePage() {
             </div>
             <div>
               <p className="text-base leading-7 text-foreground/80">I use AI to explore possibilities and challenge assumptions, while taking responsibility for understanding the code and owning the decisions behind it. I approach emerging technology and infrastructure with the same care: every dependency should earn its place.</p>
-              <a href="/about#philosophy" className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-primary hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">Read my philosophy <span aria-hidden="true">→</span></a>
+              <a href="/about/#philosophy" className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-primary hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">Read my philosophy <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </section>
@@ -741,9 +741,9 @@ function HomePage() {
         <section className="mx-auto mt-16 max-w-7xl rounded-[1.5rem] border border-primary/20 bg-card/80 p-6 sm:p-8">
             <SectionHeading eyebrow="Product engineering" title="From first idea to a product that grows." body="Our own apps combine product design, software engineering, search-led growth and secure infrastructure. From custom Rive experiences and geometry engines to native real-time video transport, we build the underlying technology when the product demands it."/>
             <div className="mt-5 flex flex-wrap gap-3">
-              <a href="/technology" className="rounded-full border border-primary/40 px-5 py-3 font-semibold text-primary">Explore our technology</a>
-              <a href="/labs/bleachers" className="rounded-full border border-primary/40 px-5 py-3 font-semibold text-primary">Bleachers · Media over QUIC</a>
-              <a href="/services/product-launch-growth" className="rounded-full bg-primary px-5 py-3 font-semibold text-primary-foreground">Product Launch & Growth</a>
+              <a href="/technology/" className="rounded-full border border-primary/40 px-5 py-3 font-semibold text-primary">Explore our technology</a>
+              <a href="/labs/bleachers/" className="rounded-full border border-primary/40 px-5 py-3 font-semibold text-primary">Bleachers · Media over QUIC</a>
+              <a href="/services/product-launch-growth/" className="rounded-full bg-primary px-5 py-3 font-semibold text-primary-foreground">Product Launch & Growth</a>
             </div>
         </section>
         <section id="beyond-wordpress" className="mx-auto mt-20 max-w-7xl scroll-mt-8">
@@ -1052,7 +1052,7 @@ function App({path}:{path?:string} = {}) {
   if(normalizedPath==="/technology")return <TechnologyPage/>;
   if(normalizedPath==="/insights")return <InsightsPage/>;
   if(normalizedPath==="/about")return <AboutPage/>;
-  if(normalizedPath==="/work")return <ClientWorkPage>{clientWork.map(({project,slug})=><div key={slug}><ProjectCard project={project}/><a className="mt-3 inline-block font-semibold text-primary" href={"/work/"+slug}>Read case study →</a></div>)}</ClientWorkPage>;
+  if(normalizedPath==="/work")return <ClientWorkPage>{clientWork.map(({project,slug})=><div key={slug}><ProjectCard project={project}/><a className="mt-3 inline-block font-semibold text-primary" href={"/work/"+slug+"/"}>Read case study →</a></div>)}</ClientWorkPage>;
   const client=clientWork.find(x=>normalizedPath==="/work/"+x.slug);
   if(client)return <ClientDetailPage title={client.project.name} description={client.project.outcome}>{client.project.caseTitle?<CaseStudyCard project={client.project}/>:<ProjectCard project={client.project}/>}</ClientDetailPage>;
   if(normalizedPath==="/"||normalizedPath==="/contact")return <HomePage/>;
